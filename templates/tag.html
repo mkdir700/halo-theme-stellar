@@ -1,19 +1,34 @@
 <!DOCTYPE html>
-<html
-  xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{layout :: html(head = null,content = ~{::content})}"
->
-  <th:block th:fragment="content">
-    <h1 th:text="${tag.spec.displayName}"></h1>
-    <ul>
-      <li th:each="post : ${posts.items}">
-        <a
-          th:href="@{${post.status.permalink}}"
-          th:text="${post.spec.title}"
-        ></a>
-      </li>
-    </ul>
-    <a th:if="${posts.hasPrevious()}" th:href="@{${posts.prevUrl}}">上一页</a>
-    <a th:if="${posts.hasNext()}" th:href="@{${posts.nextUrl}}">下一页</a>
+<html xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{modules/layout :: html(head = null,content = ~{::content},_left = ~{::left},_right = ~{::right},page_type = 'index',layout = 'undefined',_title = ${tag.spec.displayName},_type = null,_indent = null)}">
+
+<th:block th:fragment="left">
+  <th:block
+    th:replace="~{modules/partial/sidebar/logo :: logo('sidebar',null,${theme.config.logo.avatar},${theme.config.logo.title},${theme.config.logo.subtitle},'/')}">
   </th:block>
+  <div class="nav-area">
+    <th:block th:replace="~{modules/partial/sidebar/search}"></th:block>
+    <th:block th:replace="~{modules/partial/sidebar/menu :: menu('sidebar')}"></th:block>
+  </div>
+  <div th:replace="~{modules/partial/sidebar/widgets :: widgets(${theme.config.site_tree.index.leftbar})}"></div>
+  <th:block th:replace="~{modules/partial/sidebar/footer}"></th:block>
+</th:block>
+<th:block th:fragment="right">
+  <div th:replace="~{modules/partial/sidebar/widgets :: widgets(${theme.config.site_tree.index.rightbar})}"></div>
+</th:block>
+
+<th:block th:fragment="content">
+  <th:block
+    th:replace="~{modules/partial/sidebar/logo :: logo('main',null,${theme.config.logo.avatar},${theme.config.logo.title},${theme.config.logo.subtitle},'')}">
+  </th:block>
+  <th:block th:replace="~{modules/partial/main/navbar/index_nav_tabs_blog}" />
+  <div class="post-list post" th:with="_layout = 'post'">
+    <th:block th:each="post,iter : ${posts.items}">
+      <th:block th:replace="~{modules/partial/main/post_list/layout_post_card}" />
+    </th:block>
+  </div>
+  <th:block th:replace="~{modules/partial/main/post_list/paginator :: page(${tag.status.permalink},${posts})}">
+  </th:block>
+</th:block>
+
 </html>

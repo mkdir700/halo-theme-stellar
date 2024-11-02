@@ -1,21 +1,33 @@
 apiVersion: theme.halo.run/v1alpha1
 kind: Theme
 metadata:
-  name: theme-starter
+  name: theme-stellar
 spec:
-  displayName: Theme Starter
+  customTemplates:
+    page:
+      - name: 专题分类模板
+        description:
+        screenshot:
+        file: category_topic.html
+    post:
+      - name: 专题模板
+        description:
+        screenshot:
+        file: topic.html
+  displayName: Stellar
   author:
-    name: Halo
-    website: "https://github.com/halo-dev"
+    name: 困困鱼
+    website: "https://github.com/chengzhongxue"
   description: Halo 2.0 Theme base on Thymeleaf
   logo: "https://www.halo.run/logo"
-  homepage: "https://github.com/halo-dev/theme-starter#readme"
-  repo: "https://github.com/halo-dev/theme-starter"
-  issues: "https://github.com/halo-dev/theme-starter/issues"
-  settingName: "theme-starter-setting"
-  configMapName: "theme-starter-configMap"
+  homepage: "https://github.com/chengzhongxue/halo-theme-stellar#readme"
+  repo: "https://github.com/chengzhongxue/halo-theme-stellar"
+  issues: "https://github.com/chengzhongxue/halo-theme-stellar/issues"
+  settingName: "theme-stellar-setting"
+  configMapName: "theme-stellar-configMap"
   version: "1.0.0"
   requires: ">=2.0.0"
   license:
     - name: "GPL-3.0"
-      url: "https://github.com/halo-dev/plugin-starter/blob/main/LICENSE"
+      url: "https://github.com/chengzhongxue/halo-theme-stellar/blob/main/LICENSE"
+  

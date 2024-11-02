@@ -1,13 +1,1919 @@
 apiVersion: v1alpha1
 kind: Setting
 metadata:
-  name: theme-starter-setting
+  name: theme-stellar-setting
 spec:
   forms:
+    - group: logo
+      label: logo
+      formSchema:
+        - $formkit: attachment
+          name: avatar
+          label: 图标
+          accepts:
+            - "image/*"
+          value: https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg
+        - $formkit: text
+          name: title
+          label: 大标题
+          value: 困困鱼
+        - $formkit: text
+          name: subtitle
+          label: 标题
+          value: 风暴前夕|kunkunyu.com
+          help: 文字1 | 文字2 (鼠标放上去会切换到文字2)
+
+    - group: menubar
+      label: 侧边栏-导航菜单
+      formSchema:
+        - $formkit: number
+          name: columns
+          label: 一行多少个
+          value: 4
+        - $formkit: repeater
+          name: items
+          label: 菜单
+          min: 1
+          value: 
+            - theme: "#1BCDFC"
+              icon: <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg>
+              title: "博客"
+              url: "/"
+            - theme: "#3DC550"
+              icon: <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg>
+              title: "文档"
+              url: "/docs"
+            - theme: "#FA6400"
+              icon: <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg>
+              title: "探索"
+              url: "/explore"
+            - theme: "#F44336"
+              icon: <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg>
+              title: "社交"
+              url: "/links"
+          children:
+            - $formkit: color
+              name: theme
+              label: 高亮时的颜色
+              help: 仅 svg 中 fill="currentColor" 时有效
+            - $formkit: textarea
+              name: icon
+              label: 图标  
+              help: 支持 svg/img 标签
+            - $formkit: text
+              name: title
+              label: 标题
+            - $formkit: text
+              name: url
+              label: 链接
+
+    - group: site_tree
+      label: 站点主结构树
+      formSchema:
+        - $formkit: group
+          name: index
+          label: 首页
+          value:
+            leftbar: 
+              - widget: recent_post
+            rightbar: []
+            nav_tabs:
+              - title: "近期发布"
+                url: "/"
+              - title: "分类"
+                url: "/categories"
+              - title: "标签"
+                url: "/tags"
+              - title: "归档"
+                url: "/archives"
+          children:
+            - $formkit: repeater
+              name: leftbar
+              id: leftbar
+              label: 左侧栏
+              children:
+                - $formkit: select
+                  name: widget
+                  id: widget
+                  key: widget
+                  label: "小工具"
+                  options:
+                    - value: "recent_post"
+                      label: 最近文章
+                    - value: "ghuser"
+                      label: ghuser
+                    - value: "linklist"
+                      label: 链接
+                    - value: "tagcloud"
+                      label: 标签
+                    - value: "friends"
+                      label: 朋友圈动态
+                    - value: "moment"
+                      label: 瞬间动态
+                    - value: "markdown"
+                      label: 自定义
+                - $formkit: group
+                  name: markdown
+                  if: $value.widget == 'markdown'
+                  key: markdown
+                  label: 自定义内容
+                  children:
+                    - $formkit: text
+                      name: title
+                      label: 标题
+                      value: ""
+                      language: html
+                    - $formkit: text
+                      name: src
+                      label: 内容链接
+                      help: 可以设置外部 html 内容链接    
+                    - $formkit: code
+                      name: content
+                      label: 内容
+                      height: 200px
+                      help: 支持html语法
+                      language: html     
+                    - $formkit: number
+                      name: columns
+                      value: 1
+                      label: 链接列表-每行几个按钮
+                      help: 为1显示为列表，2是每两个按钮放一行
+                    - $formkit: repeater
+                      name: items
+                      label: 链接列表
+                      children:
+                        - $formkit: textarea
+                          name: icon
+                          label: 图标  
+                          help: 支持 svg/img 标签
+                          validation: required
+                        - $formkit: text
+                          name: title
+                          label: 标题
+                          validation: required
+                        - $formkit: text
+                          name: url
+                          label: 链接
+                          validation: required
+            - $formkit: repeater
+              name: rightbar
+              id: rightbar
+              label: 右侧栏
+              children:
+                - $formkit: select
+                  name: widget
+                  id: widget
+                  key: widget
+                  label: "小工具"
+                  options:
+                    - value: "recent_post"
+                      label: 最近文章
+                    - value: "ghuser"
+                      label: ghuser
+                    - value: "linklist"
+                      label: 链接
+                    - value: "tagcloud"
+                      label: 标签
+                    - value: "friends"
+                      label: 朋友圈动态
+                    - value: "moment"
+                      label: 瞬间动态
+                    - value: "markdown"
+                      label: 自定义
+                - $formkit: group
+                  name: markdown
+                  if: $value.widget == 'markdown'
+                  key: markdown
+                  label: 自定义内容
+                  children:
+                    - $formkit: text
+                      name: title
+                      label: 标题
+                      value: ""
+                      language: html
+                    - $formkit: text
+                      name: src
+                      label: 内容链接
+                      help: 可以设置外部 html 内容链接    
+                    - $formkit: code
+                      name: content
+                      label: 内容
+                      height: 200px
+                      help: 支持html语法
+                      language: html     
+                    - $formkit: number
+                      name: columns
+                      value: 1
+                      label: 链接列表-每行几个按钮
+                      help: 为1显示为列表，2是每两个按钮放一行
+                    - $formkit: repeater
+                      name: items
+                      label: 链接列表
+                      children:
+                        - $formkit: textarea
+                          name: icon
+                          label: 图标  
+                          help: 支持 svg/img 标签
+                          validation: required
+                        - $formkit: text
+                          name: title
+                          label: 标题
+                          validation: required
+                        - $formkit: text
+                          name: url
+                          label: 链接
+                          validation: required
+            - $formkit: repeater
+              name: nav_tabs
+              label: 菜单
+              min: 1
+              children:
+                - $formkit: text
+                  name: title
+                  label: 标题
+                - $formkit: text
+                  name: url
+                  label: 链接  
+        - $formkit: group
+          name: index_topic
+          label: 专栏列表页
+          value:
+            leftbar: 
+              - widget: recent_post
+            rightbar: []
+          children:
+            - $formkit: repeater
+              name: leftbar
+              id: leftbar
+              label: 左侧栏
+              children:
+                - $formkit: select
+                  name: widget
+                  id: widget
+                  key: widget
+                  label: "小工具"
+                  options:
+                    - value: "recent_post"
+                      label: 最近文章
+                    - value: "linklist"
+                      label: 链接
+                    - value: "tagcloud"
+                      label: 标签
+                    - value: "friends"
+                      label: 朋友圈动态
+                    - value: "moment"
+                      label: 瞬间动态
+                    - value: "markdown"
+                      label: 自定义
+                - $formkit: group
+                  name: markdown
+                  if: $value.widget == 'markdown'
+                  key: markdown
+                  label: 自定义内容
+                  children:
+                    - $formkit: text
+                      name: title
+                      label: 标题
+                      value: ""
+                      language: html
+                    - $formkit: text
+                      name: src
+                      label: 内容链接
+                      help: 可以设置外部 html 内容链接    
+                    - $formkit: code
+                      name: content
+                      label: 内容
+                      height: 200px
+                      help: 支持html语法
+                      language: html     
+                    - $formkit: number
+                      name: columns
+                      value: 1
+                      label: 链接列表-每行几个按钮
+                      help: 为1显示为列表，2是每两个按钮放一行
+                    - $formkit: repeater
+                      name: items
+                      label: 链接列表
+                      children:
+                        - $formkit: textarea
+                          name: icon
+                          label: 图标  
+                          help: 支持 svg/img 标签
+                          validation: required
+                        - $formkit: text
+                          name: title
+                          label: 标题
+                          validation: required
+                        - $formkit: text
+                          name: url
+                          label: 链接
+                          validation: required
+            - $formkit: repeater
+              name: rightbar
+              id: rightbar
+              label: 右侧栏
+              children:
+                - $formkit: select
+                  name: widget
+                  id: widget
+                  key: widget
+                  label: "小工具"
+                  options:
+                    - value: "linklist"
+                      label: 链接
+                    - value: "tagcloud"
+                      label: 标签
+                    - value: "friends"
+                      label: 朋友圈动态
+                    - value: "moment"
+                      label: 瞬间动态
+                    - value: "markdown"
+                      label: 自定义
+                - $formkit: group
+                  name: markdown
+                  if: $value.widget == 'markdown'
+                  key: markdown
+                  label: 自定义内容
+                  children:
+                    - $formkit: text
+                      name: title
+                      label: 标题
+                      value: ""
+                      language: html
+                    - $formkit: text
+                      name: src
+                      label: 内容链接
+                      help: 可以设置外部 html 内容链接    
+                    - $formkit: code
+                      name: content
+                      label: 内容
+                      height: 200px
+                      help: 支持html语法
+                      language: html     
+                    - $formkit: number
+                      name: columns
+                      value: 1
+                      label: 链接列表-每行几个按钮
+                      help: 为1显示为列表，2是每两个按钮放一行
+                    - $formkit: repeater
+                      name: items
+                      label: 链接列表
+                      children:
+                        - $formkit: textarea
+                          name: icon
+                          label: 图标  
+                          help: 支持 svg/img 标签
+                          validation: required
+                        - $formkit: text
+                          name: title
+                          label: 标题
+                          validation: required
+                        - $formkit: text
+                          name: url
+                          label: 链接
+                          validation: required
+            - $formkit: categorySelect
+              name: category
+              label: 专栏分类
+              multiple: true
+              clearable: true
+              searchable: true
+              sortable: true
+        - $formkit: group
+          name: index_docs
+          label: 文档列表页
+          value:
+            leftbar: 
+              - widget: recent_post
+            rightbar: []
+            nav_tabs: 
+              - title: "文档"
+                url: "/docs"
+          children:
+            - $formkit: repeater
+              name: leftbar
+              id: leftbar
+              label: 左侧栏
+              children:
+                - $formkit: select
+                  name: widget
+                  id: widget
+                  key: widget
+                  label: "小工具"
+                  options:
+                    - value: "recent_post"
+                      label: 最近文章
+                    - value: "linklist"
+                      label: linklist
+                    - value: "markdown"
+                      label: 自定义
+                - $formkit: group
+                  name: markdown
+                  if: $value.widget == 'markdown'
+                  key: markdown
+                  label: 自定义内容
+                  children:
+                    - $formkit: text
+                      name: title
+                      label: 标题
+                      value: ""
+                      language: html
+                    - $formkit: text
+                      name: src
+                      label: 内容链接
+                      help: 可以设置外部 html 内容链接    
+                    - $formkit: code
+                      name: content
+                      label: 内容
+                      height: 200px
+                      help: 支持html语法
+                      language: html     
+                    - $formkit: number
+                      name: columns
+                      value: 1
+                      label: 链接列表-每行几个按钮
+                      help: 为1显示为列表，2是每两个按钮放一行
+                    - $formkit: repeater
+                      name: items
+                      label: 链接列表
+                      children:
+                        - $formkit: textarea
+                          name: icon
+                          label: 图标  
+                          help: 支持 svg/img 标签
+                          validation: required
+                        - $formkit: text
+                          name: title
+                          label: 标题
+                          validation: required
+                        - $formkit: text
+                          name: url
+                          label: 链接
+                          validation: required
+            - $formkit: repeater
+              name: rightbar
+              id: rightbar
+              label: 右侧栏
+              children:
+                - $formkit: select
+                  name: widget
+                  id: widget
+                  key: widget
+                  label: "小工具"
+                  options:
+                    - value: "recent_post"
+                      label: 最近文章
+                    - value: "linklist"
+                      label: 链接
+                    - value: "tagcloud"
+                      label: 标签
+                    - value: "friends"
+                      label: 朋友圈动态
+                    - value: "moment"
+                      label: 瞬间动态
+                    - value: "markdown"
+                      label: 自定义
+                - $formkit: group
+                  name: markdown
+                  if: $value.widget == 'markdown'
+                  key: markdown
+                  label: 自定义内容
+                  children:
+                    - $formkit: text
+                      name: title
+                      label: 标题
+                      value: ""
+                      language: html
+                    - $formkit: text
+                      name: src
+                      label: 内容链接
+                      help: 可以设置外部 html 内容链接    
+                    - $formkit: code
+                      name: content
+                      label: 内容
+                      height: 200px
+                      help: 支持html语法
+                      language: html     
+                    - $formkit: number
+                      name: columns
+                      value: 1
+                      label: 链接列表-每行几个按钮
+                      help: 为1显示为列表，2是每两个按钮放一行
+                    - $formkit: repeater
+                      name: items
+                      label: 链接列表
+                      children:
+                        - $formkit: textarea
+                          name: icon
+                          label: 图标  
+                          help: 支持 svg/img 标签
+                          validation: required
+                        - $formkit: text
+                          name: title
+                          label: 标题
+                          validation: required
+                        - $formkit: text
+                          name: url
+                          label: 链接
+                          validation: required
+            - $formkit: repeater
+              name: nav_tabs
+              label: 菜单
+              min: 1
+              children:
+                - $formkit: text
+                  name: title
+                  label: 标题
+                - $formkit: text
+                  name: url
+                  label: 链接 
+        - $formkit: group
+          name: post
+          label: 文章
+          value:
+            leftbar: 
+              - widget: recent_post
+            rightbar: 
+              - widget: ghrepo
+              - widget: toc
+          children:
+            - $formkit: repeater
+              name: leftbar
+              id: leftbar
+              label: 左侧栏
+              children:
+                - $formkit: select
+                  name: widget
+                  id: widget
+                  key: widget
+                  label: "小工具"
+                  options:
+                    - value: "author"
+                      label: 作者信息
+                    - value: "recent_post"
+                      label: 最近文章
+                    - value: "linklist"
+                      label: 链接
+                    - value: "tagcloud"
+                      label: 标签
+                    - value: "friends"
+                      label: 朋友圈动态
+                    - value: "moment"
+                      label: 瞬间动态
+                    - value: "markdown"
+                      label: 自定义
+                - $formkit: group
+                  name: markdown
+                  if: $value.widget == 'markdown'
+                  key: markdown
+                  label: 自定义内容
+                  children:
+                    - $formkit: text
+                      name: title
+                      label: 标题
+                      value: ""
+                      language: html
+                    - $formkit: text
+                      name: src
+                      label: 内容链接
+                      help: 可以设置外部 html 内容链接    
+                    - $formkit: code
+                      name: content
+                      label: 内容
+                      height: 200px
+                      help: 支持html语法
+                      language: html     
+                    - $formkit: number
+                      name: columns
+                      value: 1
+                      label: 链接列表-每行几个按钮
+                      help: 为1显示为列表，2是每两个按钮放一行
+                    - $formkit: repeater
+                      name: items
+                      label: 链接列表
+                      children:
+                        - $formkit: textarea
+                          name: icon
+                          label: 图标  
+                          help: 支持 svg/img 标签
+                          validation: required
+                        - $formkit: text
+                          name: title
+                          label: 标题
+                          validation: required
+                        - $formkit: text
+                          name: url
+                          label: 链接
+                          validation: required
+            - $formkit: repeater
+              name: rightbar
+              id: rightbar
+              label: 右侧栏
+              children:
+                - $formkit: select
+                  name: widget
+                  id: widget
+                  key: widget
+                  label: "小工具"
+                  options:
+                    - value: "ghrepo"
+                      label: ghrepo
+                    - value: "author"
+                      label: 作者信息
+                    - value: "toc"
+                      label: 目录
+                    - value: "linklist"
+                      label: 链接
+                    - value: "tagcloud"
+                      label: 标签
+                    - value: "friends"
+                      label: 朋友圈动态
+                    - value: "moment"
+                      label: 瞬间动态
+                    - value: "markdown"
+                      label: 自定义
+                - $formkit: group
+                  name: markdown
+                  if: $value.widget == 'markdown'
+                  key: markdown
+                  label: 自定义内容
+                  children:
+                    - $formkit: text
+                      name: title
+                      label: 标题
+                      value: ""
+                      language: html
+                    - $formkit: text
+                      name: src
+                      label: 内容链接
+                      help: 可以设置外部 html 内容链接    
+                    - $formkit: code
+                      name: content
+                      label: 内容
+                      height: 200px
+                      help: 支持html语法
+                      language: html     
+                    - $formkit: number
+                      name: columns
+                      value: 1
+                      label: 链接列表-每行几个按钮
+                      help: 为1显示为列表，2是每两个按钮放一行
+                    - $formkit: repeater
+                      name: items
+                      label: 链接列表
+                      children:
+                        - $formkit: textarea
+                          name: icon
+                          label: 图标  
+                          help: 支持 svg/img 标签
+                          validation: required
+                        - $formkit: text
+                          name: title
+                          label: 标题
+                          validation: required
+                        - $formkit: text
+                          name: url
+                          label: 链接
+                          validation: required
+        - $formkit: group
+          name: topic
+          label: 专栏文章内页
+          value:
+            leftbar: 
+              - widget: recent_post
+            rightbar: 
+              - widget: toc
+          children:
+            - $formkit: repeater
+              name: leftbar
+              id: leftbar
+              label: 左侧栏
+              children:
+                - $formkit: select
+                  name: widget
+                  id: widget
+                  key: widget
+                  label: "小工具"
+                  options:
+                    - value: "recent_post"
+                      label: 最近文章
+                    - value: "linklist"
+                      label: 链接
+                    - value: "friends"
+                      label: 朋友圈动态
+                    - value: "moment"
+                      label: 瞬间动态
+                    - value: "markdown"
+                      label: 自定义
+                - $formkit: group
+                  name: markdown
+                  if: $value.widget == 'markdown'
+                  key: markdown
+                  label: 自定义内容
+                  children:
+                    - $formkit: text
+                      name: title
+                      label: 标题
+                      value: ""
+                      language: html
+                    - $formkit: text
+                      name: src
+                      label: 内容链接
+                      help: 可以设置外部 html 内容链接    
+                    - $formkit: code
+                      name: content
+                      label: 内容
+                      height: 200px
+                      help: 支持html语法
+                      language: html     
+                    - $formkit: number
+                      name: columns
+                      value: 1
+                      label: 链接列表-每行几个按钮
+                      help: 为1显示为列表，2是每两个按钮放一行
+                    - $formkit: repeater
+                      name: items
+                      label: 链接列表
+                      children:
+                        - $formkit: textarea
+                          name: icon
+                          label: 图标  
+                          help: 支持 svg/img 标签
+                          validation: required
+                        - $formkit: text
+                          name: title
+                          label: 标题
+                          validation: required
+                        - $formkit: text
+                          name: url
+                          label: 链接
+                          validation: required
+            - $formkit: repeater
+              name: rightbar
+              id: rightbar
+              label: 右侧栏
+              children:
+                - $formkit: select
+                  name: widget
+                  id: widget
+                  key: widget
+                  label: "小工具"
+                  options:
+                    - value: "ghrepo"
+                      label: ghrepo
+                    - value: "toc"
+                      label: 目录
+                    - value: "linklist"
+                      label: 链接
+                    - value: "friends"
+                      label: 朋友圈动态
+                    - value: "moment"
+                      label: 瞬间动态
+                    - value: "markdown"
+                      label: 自定义
+                - $formkit: group
+                  name: markdown
+                  if: $value.widget == 'markdown'
+                  key: markdown
+                  label: 自定义内容
+                  children:
+                    - $formkit: text
+                      name: title
+                      label: 标题
+                      value: ""
+                      language: html
+                    - $formkit: text
+                      name: src
+                      label: 内容链接
+                      help: 可以设置外部 html 内容链接    
+                    - $formkit: code
+                      name: content
+                      label: 内容
+                      height: 200px
+                      help: 支持html语法
+                      language: html     
+                    - $formkit: number
+                      name: columns
+                      value: 1
+                      label: 链接列表-每行几个按钮
+                      help: 为1显示为列表，2是每两个按钮放一行
+                    - $formkit: repeater
+                      name: items
+                      label: 链接列表
+                      children:
+                        - $formkit: textarea
+                          name: icon
+                          label: 图标  
+                          help: 支持 svg/img 标签
+                          validation: required
+                        - $formkit: text
+                          name: title
+                          label: 标题
+                          validation: required
+                        - $formkit: text
+                          name: url
+                          label: 链接
+                          validation: required
+        - $formkit: group
+          name: doc
+          label: 文档内页
+          value:
+            leftbar: 
+              - widget: doc_tree
+            rightbar: 
+              - widget: toc
+          children:
+            - $formkit: repeater
+              name: leftbar
+              id: leftbar
+              label: 左侧栏
+              children:
+                - $formkit: select
+                  name: widget
+                  id: widget
+                  key: widget
+                  label: "小工具"
+                  options:
+                    - value: "doc_tree"
+                      label: 文档目录
+                    - value: "linklist"
+                      label: 链接
+                    - value: "friends"
+                      label: 朋友圈动态
+                    - value: "moment"
+                      label: 瞬间动态
+                    - value: "markdown"
+                      label: 自定义
+                - $formkit: group
+                  name: markdown
+                  if: $value.widget == 'markdown'
+                  key: markdown
+                  label: 自定义内容
+                  children:
+                    - $formkit: text
+                      name: title
+                      label: 标题
+                      value: ""
+                      language: html
+                    - $formkit: text
+                      name: src
+                      label: 内容链接
+                      help: 可以设置外部 html 内容链接    
+                    - $formkit: code
+                      name: content
+                      label: 内容
+                      height: 200px
+                      help: 支持html语法
+                      language: html     
+                    - $formkit: number
+                      name: columns
+                      value: 1
+                      label: 链接列表-每行几个按钮
+                      help: 为1显示为列表，2是每两个按钮放一行
+                    - $formkit: repeater
+                      name: items
+                      label: 链接列表
+                      children:
+                        - $formkit: textarea
+                          name: icon
+                          label: 图标  
+                          help: 支持 svg/img 标签
+                          validation: required
+                        - $formkit: text
+                          name: title
+                          label: 标题
+                          validation: required
+                        - $formkit: text
+                          name: url
+                          label: 链接
+                          validation: required
+            - $formkit: repeater
+              name: rightbar
+              id: rightbar
+              label: 右侧栏
+              children:
+                - $formkit: select
+                  name: widget
+                  id: widget
+                  key: widget
+                  label: "小工具"
+                  options:
+                    - value: "toc"
+                      label: 目录
+                    - value: "linklist"
+                      label: 链接
+                    - value: "friends"
+                      label: 朋友圈动态
+                    - value: "moment"
+                      label: 瞬间动态
+                    - value: "markdown"
+                      label: 自定义
+                - $formkit: group
+                  name: markdown
+                  if: $value.widget == 'markdown'
+                  key: markdown
+                  label: 自定义内容
+                  children:
+                    - $formkit: text
+                      name: title
+                      label: 标题
+                      value: ""
+                      language: html
+                    - $formkit: text
+                      name: src
+                      label: 内容链接
+                      help: 可以设置外部 html 内容链接    
+                    - $formkit: code
+                      name: content
+                      label: 内容
+                      height: 200px
+                      help: 支持html语法
+                      language: html     
+                    - $formkit: number
+                      name: columns
+                      value: 1
+                      label: 链接列表-每行几个按钮
+                      help: 为1显示为列表，2是每两个按钮放一行
+                    - $formkit: repeater
+                      name: items
+                      label: 链接列表
+                      children:
+                        - $formkit: textarea
+                          name: icon
+                          label: 图标  
+                          help: 支持 svg/img 标签
+                          validation: required
+                        - $formkit: text
+                          name: title
+                          label: 标题
+                          validation: required
+                        - $formkit: text
+                          name: url
+                          label: 链接
+                          validation: required
+        - $formkit: group
+          name: author
+          label: 作者
+          value:
+            leftbar: 
+              - widget: recent_post
+            rightbar:  []
+          children:
+            - $formkit: repeater
+              name: leftbar
+              id: leftbar
+              label: 左侧栏
+              children:
+                - $formkit: select
+                  name: widget
+                  id: widget
+                  key: widget
+                  label: "小工具"
+                  options:
+                    - value: "recent_post"
+                      label: 最近文章
+                    - value: "linklist"
+                      label: 链接
+                    - value: "friends"
+                      label: 朋友圈动态
+                    - value: "moment"
+                      label: 瞬间动态
+                    - value: "markdown"
+                      label: 自定义
+                - $formkit: group
+                  name: markdown
+                  if: $value.widget == 'markdown'
+                  key: markdown
+                  label: 自定义内容
+                  children:
+                    - $formkit: text
+                      name: title
+                      label: 标题
+                      value: ""
+                      language: html
+                    - $formkit: text
+                      name: src
+                      label: 内容链接
+                      help: 可以设置外部 html 内容链接    
+                    - $formkit: code
+                      name: content
+                      label: 内容
+                      height: 200px
+                      help: 支持html语法
+                      language: html     
+                    - $formkit: number
+                      name: columns
+                      value: 1
+                      label: 链接列表-每行几个按钮
+                      help: 为1显示为列表，2是每两个按钮放一行
+                    - $formkit: repeater
+                      name: items
+                      label: 链接列表
+                      children:
+                        - $formkit: textarea
+                          name: icon
+                          label: 图标  
+                          help: 支持 svg/img 标签
+                          validation: required
+                        - $formkit: text
+                          name: title
+                          label: 标题
+                          validation: required
+                        - $formkit: text
+                          name: url
+                          label: 链接
+                          validation: required
+            - $formkit: repeater
+              name: rightbar
+              id: rightbar
+              label: 右侧栏
+              children:
+                - $formkit: select
+                  name: widget
+                  id: widget
+                  key: widget
+                  label: "小工具"
+                  options:
+                    - value: "ghrepo"
+                      label: ghrepo
+                    - value: "linklist"
+                      label: 链接
+                    - value: "friends"
+                      label: 朋友圈动态
+                    - value: "moment"
+                      label: 瞬间动态
+                    - value: "markdown"
+                      label: 自定义
+                - $formkit: group
+                  name: markdown
+                  if: $value.widget == 'markdown'
+                  key: markdown
+                  label: 自定义内容
+                  children:
+                    - $formkit: text
+                      name: title
+                      label: 标题
+                      value: ""
+                      language: html
+                    - $formkit: text
+                      name: src
+                      label: 内容链接
+                      help: 可以设置外部 html 内容链接    
+                    - $formkit: code
+                      name: content
+                      label: 内容
+                      height: 200px
+                      help: 支持html语法
+                      language: html     
+                    - $formkit: number
+                      name: columns
+                      value: 1
+                      label: 链接列表-每行几个按钮
+                      help: 为1显示为列表，2是每两个按钮放一行
+                    - $formkit: repeater
+                      name: items
+                      label: 链接列表
+                      children:
+                        - $formkit: textarea
+                          name: icon
+                          label: 图标  
+                          help: 支持 svg/img 标签
+                          validation: required
+                        - $formkit: text
+                          name: title
+                          label: 标题
+                          validation: required
+                        - $formkit: text
+                          name: url
+                          label: 链接
+                          validation: required
+        - $formkit: group
+          name: error_page
+          label: 错误页
+          value:
+            leftbar: 
+              - widget: recent_post
+            rightbar: []
+          children:
+            - $formkit: repeater
+              name: leftbar
+              id: leftbar
+              label: 左侧栏
+              children:
+                - $formkit: select
+                  name: widget
+                  id: widget
+                  key: widget
+                  label: "小工具"
+                  options:
+                    - value: "recent_post"
+                      label: 最近文章
+                    - value: "linklist"
+                      label: 链接
+                    - value: "friends"
+                      label: 朋友圈动态
+                    - value: "moment"
+                      label: 瞬间动态
+                    - value: "markdown"
+                      label: 自定义
+                - $formkit: group
+                  name: markdown
+                  if: $value.widget == 'markdown'
+                  key: markdown
+                  label: 自定义内容
+                  children:
+                    - $formkit: text
+                      name: title
+                      label: 标题
+                      value: ""
+                      language: html
+                    - $formkit: text
+                      name: src
+                      label: 内容链接
+                      help: 可以设置外部 html 内容链接    
+                    - $formkit: code
+                      name: content
+                      label: 内容
+                      height: 200px
+                      help: 支持html语法
+                      language: html     
+                    - $formkit: number
+                      name: columns
+                      value: 1
+                      label: 链接列表-每行几个按钮
+                      help: 为1显示为列表，2是每两个按钮放一行
+                    - $formkit: repeater
+                      name: items
+                      label: 链接列表
+                      children:
+                        - $formkit: textarea
+                          name: icon
+                          label: 图标  
+                          help: 支持 svg/img 标签
+                          validation: required
+                        - $formkit: text
+                          name: title
+                          label: 标题
+                          validation: required
+                        - $formkit: text
+                          name: url
+                          label: 链接
+                          validation: required
+            - $formkit: repeater
+              name: rightbar
+              id: rightbar
+              label: 右侧栏
+              children:
+                - $formkit: select
+                  name: widget
+                  id: widget
+                  key: widget
+                  label: "小工具"
+                  options:
+                    - value: "recent_post"
+                      label: 最近文章
+                    - value: "linklist"
+                      label: 链接
+                    - value: "friends"
+                      label: 朋友圈动态
+                    - value: "moment"
+                      label: 瞬间动态
+                    - value: "markdown"
+                      label: 自定义
+                - $formkit: group
+                  name: markdown
+                  if: $value.widget == 'markdown'
+                  key: markdown
+                  label: 自定义内容
+                  children:
+                    - $formkit: text
+                      name: title
+                      label: 标题
+                      value: ""
+                      language: html
+                    - $formkit: text
+                      name: src
+                      label: 内容链接
+                      help: 可以设置外部 html 内容链接    
+                    - $formkit: code
+                      name: content
+                      label: 内容
+                      height: 200px
+                      help: 支持html语法
+                      language: html     
+                    - $formkit: number
+                      name: columns
+                      value: 1
+                      label: 链接列表-每行几个按钮
+                      help: 为1显示为列表，2是每两个按钮放一行
+                    - $formkit: repeater
+                      name: items
+                      label: 链接列表
+                      children:
+                        - $formkit: textarea
+                          name: icon
+                          label: 图标  
+                          help: 支持 svg/img 标签
+                          validation: required
+                        - $formkit: text
+                          name: title
+                          label: 标题
+                          validation: required
+                        - $formkit: text
+                          name: url
+                          label: 链接
+                          validation: required
+        - $formkit: group
+          name: page
+          label: 自定义页
+          value:
+            leftbar: 
+              - widget: recent_post
+            rightbar: 
+              - widget: toc
+          children:
+            - $formkit: repeater
+              name: leftbar
+              id: leftbar
+              label: 左侧栏
+              children:
+                - $formkit: select
+                  name: widget
+                  id: widget
+                  key: widget
+                  label: "小工具"
+                  options:
+                    - value: "recent_post"
+                      label: 最近文章
+                    - value: "ghuser"
+                      label: ghuser
+                    - value: "linklist"
+                      label: 链接
+                    - value: "friends"
+                      label: 朋友圈动态
+                    - value: "moment"
+                      label: 瞬间动态
+                    - value: "markdown"
+                      label: 自定义
+                - $formkit: group
+                  name: markdown
+                  if: $value.widget == 'markdown'
+                  key: markdown
+                  label: 自定义内容
+                  children:
+                    - $formkit: text
+                      name: title
+                      label: 标题
+                      value: ""
+                      language: html
+                    - $formkit: text
+                      name: src
+                      label: 内容链接
+                      help: 可以设置外部 html 内容链接    
+                    - $formkit: code
+                      name: content
+                      label: 内容
+                      height: 200px
+                      help: 支持html语法
+                      language: html     
+                    - $formkit: number
+                      name: columns
+                      value: 1
+                      label: 链接列表-每行几个按钮
+                      help: 为1显示为列表，2是每两个按钮放一行
+                    - $formkit: repeater
+                      name: items
+                      label: 链接列表
+                      children:
+                        - $formkit: textarea
+                          name: icon
+                          label: 图标  
+                          help: 支持 svg/img 标签
+                          validation: required
+                        - $formkit: text
+                          name: title
+                          label: 标题
+                          validation: required
+                        - $formkit: text
+                          name: url
+                          label: 链接
+                          validation: required
+            - $formkit: repeater
+              name: rightbar
+              id: rightbar
+              label: 右侧栏
+              children:
+                - $formkit: select
+                  name: widget
+                  id: widget
+                  key: widget
+                  label: "小工具"
+                  options:
+                    - value: "ghrepo"
+                      label: ghrepo
+                    - value: "toc"
+                      label: 目录
+                    - value: "ghuser"
+                      label: ghuser
+                    - value: "linklist"
+                      label: 链接
+                    - value: "friends"
+                      label: 朋友圈动态
+                    - value: "moment"
+                      label: 瞬间动态
+                    - value: "markdown"
+                      label: 自定义
+                - $formkit: group
+                  name: markdown
+                  if: $value.widget == 'markdown'
+                  key: markdown
+                  label: 自定义内容
+                  children:
+                    - $formkit: text
+                      name: title
+                      label: 标题
+                      value: ""
+                      language: html
+                    - $formkit: text
+                      name: src
+                      label: 内容链接
+                      help: 可以设置外部 html 内容链接    
+                    - $formkit: code
+                      name: content
+                      label: 内容
+                      height: 200px
+                      help: 支持html语法
+                      language: html     
+                    - $formkit: number
+                      name: columns
+                      value: 1
+                      label: 链接列表-每行几个按钮
+                      help: 为1显示为列表，2是每两个按钮放一行
+                    - $formkit: repeater
+                      name: items
+                      label: 链接列表
+                      children:
+                        - $formkit: textarea
+                          name: icon
+                          label: 图标  
+                          help: 支持 svg/img 标签
+                          validation: required
+                        - $formkit: text
+                          name: title
+                          label: 标题
+                          validation: required
+                        - $formkit: text
+                          name: url
+                          label: 链接
+                          validation: required     
+
     - group: style
       label: 样式
       formSchema:
-        - $formkit: color
-          name: background_color
-          label: 背景颜色
-          value: "#f2f2f2"
+        - $formkit: radio
+          name: prefers_theme
+          label: 默认配色
+          value: auto
+          options:
+            - label: 跟随系统
+              value: auto
+            - label: 浅色
+              value: light
+            - label: 深色
+              value: dark
+        - $formkit: checkbox
+          name: smooth_scroll
+          label: smooth_scroll
+          help: 开启时如果目录过长可能无法准确定位
+          value: false
+        - $formkit: group
+          name: font_size
+          label: 字体大小
+          value:
+            root: 16px
+            body: 17px
+            code: 85%
+            codeblock: 0.8125rem
+          children:
+            - $formkit: text
+              name: root
+              label: 全局文字的字号
+            - $formkit: text
+              name: body
+              label: 正文区域的字号
+              help: 影响正文区域的字号，如果改成 px 则不受 root 影响
+            - $formkit: text
+              name: code
+              label: 所在行的文本大小
+              help: 相较于其所在行的文本大小，建议用百分比
+            - $formkit: text
+              name: codeblock
+              label: codeblock
+        - $formkit: group
+          name: font_family
+          label: 字体
+          value:
+            logo: system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif
+            body: system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif
+            code: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif
+            codeblock: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif
+          children:
+            - $formkit: text
+              name: logo
+              label: logo
+            - $formkit: text
+              name: body
+              label: body
+            - $formkit: text
+              name: code
+              label: code
+            - $formkit: text
+              name: codeblock
+              label: codeblock
+        - $formkit: text
+          name: text_align
+          label: text-align
+          value: left
+          validation: required
+        - $formkit: group
+          name: border_radius
+          label: 圆角
+          value:
+            card_l: 16px
+            card: 12px
+            bar: 8px
+            image: 12px
+          children:
+            - $formkit: text
+              name: card_l
+              label: 侧边栏、文章横幅位置的圆角
+            - $formkit: text
+              name: card
+              label: 文章内大部分卡片的圆角
+            - $formkit: text
+              name: bar
+              label: 横条类元素的圆角
+            - $formkit: text
+              name: image
+              label: 图片圆角
+        - $formkit: group
+          name: color
+          label: 颜色
+          value:
+            background: 212 16% 98%
+            block: 212 8% 95%
+            code: 220 20% 10%
+            text: 0 0% 20%
+            theme: "#1cd0fd"
+            accent: "#ff5724"
+            link: "#2094f3"
+            hover: "#ff5724"
+          children:
+            - $formkit: text
+              name: background
+              label: 浅色背景颜色
+            - $formkit: text
+              name: block
+              label: 块背景颜色
+            - $formkit: text
+              name: code
+              label: 行内代码颜色
+            - $formkit: text
+              name: text
+              label: 文本颜色
+            - $formkit: color
+              name: theme
+              label: 主题色
+            - $formkit: color
+              name: accent
+              label: 强调色
+            - $formkit: color
+              name: link
+              label: 超链接颜色
+            - $formkit: color
+              name: hover
+              label: 按钮高亮颜色
+        - $formkit: group
+          name: animated_avatar
+          label: animated_avatar
+          value:
+            animate: auto
+            background: https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp
+          children:
+            - $formkit: select
+              name: animate
+              label: animate
+              options:
+                - label: auto
+                  value: auto
+                - label: always
+                  value: always
+            - $formkit: attachment
+              name: background
+              label: background
+              accepts:
+                - "image/*"
+        - $formkit: group
+          name: leftbar
+          label: 左侧背景
+          help: 可以设置：纯色/渐变色/图片作为背景
+          value:
+            enable: false
+            background: var(--leftbar-bg)
+            background_image: https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.13/image/sidebar-bg1@small.jpg
+            blur_px: 100px
+            blur_bg: var(--alpha60)
+          children:
+            - $formkit: checkbox
+              name: enable
+              id: leftbar_enable
+              label: 开启
+              help: 可以设置：纯色/渐变色/图片作为背景
+            - $formkit: text
+              if: $get(leftbar_enable).value
+              name: background
+              label: 背景
+            - $formkit: attachment
+              if: $get(leftbar_enable).value
+              name: background_image
+              label: 图片
+              accepts:
+                - "image/*"
+            - $formkit: text
+              if: $get(leftbar_enable).value
+              name: blur_px
+              label: 大小
+            - $formkit: text
+              if: $get(leftbar_enable).value
+              name: blur_bg
+              label: 颜色
+        - $formkit: attachment
+          name: error_page
+          label: 404页面
+          value: https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/404/1c830bfcd517d.svg
+          accepts:
+            - "image/*"
+
+    - group: comments
+      label: 评论
+      formSchema:
+        - $formkit: select
+          name: service
+          label: 服务
+          value: default
+          options:
+            - label: 默认
+              value: default
+        - $formkit: text
+          name: comment_title
+          label: 标题
+          value: 快来参与讨论吧~
+      
+    - group: footer
+      label: 页脚
+      formSchema:
+        - $formkit: repeater
+          name: social
+          label: 社交媒体
+          value: 
+            - icon: <img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/08a41b181ce68.svg"/>
+              title: "github"
+              url: "/"
+            - icon: <img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/3845874.svg"/>
+              title: "music"
+              url: "/"
+            - icon: <img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/3616429.svg"/>
+              title: "unsplash"
+              url: "/"
+            - icon: <img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/942ebbf1a4b91.svg"/>
+              title: "comments"
+              url: "/"
+          children:
+            - $formkit: textarea
+              name: icon
+              label: 图标  
+              help: 支持 svg/img 标签
+              validation: required
+            - $formkit: text
+              name: title
+              label: 标题
+              validation: required
+            - $formkit: text
+              name: url
+              label: 链接
+              validation: required
+        - $formkit: select
+          name: sitemap
+          label: 菜单组
+          value: []
+          multiple: true
+          sortable: true
+          action: '/api/v1alpha1/menus'
+          requestOption:
+            labelField: 'spec.displayName'
+            valueField: 'metadata.name'
+        - $formkit: code
+          name: content
+          label: 自定义HTML代码-内容
+          height: 200px
+          language: html
+          value: <p>本站由 困困鱼 使用 <a target="_blank" href="https://github.com/chengzhongxue/halo-theme-stellar">Stellar</a> 创建。</p>
+
+
+    - group: article
+      label: 文章
+      formSchema:
+        - $formkit: radio
+          name: type
+          label: 文章类型
+          help: 文章类型，决定布局风格
+          value: tech
+          options:
+            - label: 技术类文章
+              value: tech
+            - label: 图文类文章，文字和段落间增距大
+              value: story
+        - $formkit: checkbox
+          name: indent
+          label: 缩进两个文字宽度
+        - $formkit: number
+          name: cover_ratio
+          label: 封面图宽高比
+          value: 2.4
+        - $formkit: code
+          name: license
+          label: 文章许可协议
+          height: 200px
+          language: html
+          value: <p>本文由 <a href="https://kunkunyu.com/">困困鱼</a> 原创，采用 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+        - $formkit: select
+          name: share
+          multiple: true
+          sortable: true
+          label: 分享
+          value: []
+          options:
+            - label: 微信
+              value: wechat
+            - label: 微博
+              value: weibo
+            - label: 邮箱
+              value: email
+            - label: 链接
+              value: link
+        - $formkit: group
+          name: related_posts
+          label: 相关文章
+          value:
+            enable: false
+            max_count: 5
+          children:
+            - $formkit: checkbox
+              name: enable
+              id: related_posts_enable
+              label: 开启
+            - $formkit: number
+              if: $get(related_posts_enable).value
+              name: max_count
+              label: 文章数
+
+    - group: widgets
+      label: 小工具
+      formSchema:
+        - $formkit: group
+          name: ghuser
+          label: GitHub 信息卡片
+          value:
+            username: github
+            avatar: true
+          children:
+            - $formkit: text
+              name: username
+              label: 您的github登录用户名
+            - $formkit: checkbox
+              name: avatar
+              label: 显示头像
+        - $formkit: group
+          name: toc
+          label: 目录
+          value:
+            collapse: "false"
+          children:
+            - $formkit: select
+              name: collapse
+              label: "折叠"
+              options:
+                - value: "true"
+                  label: 始终折叠
+                - value: "false"
+                  label: 不折叠
+                - value: "auto"
+                  label: 自动折叠
+        - $formkit: group
+          name: linklist
+          label: 链接列表
+          value:
+            title: "社交"
+            columns: 1
+            items: 
+              - icon: <img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/942ebbf1a4b91.svg"/>
+                title: "关于"
+                url: "/about"
+          children:
+            - $formkit: text
+              name: title
+              label: 标题
+            - $formkit: number
+              name: columns
+              label: 每行几个按钮
+              help: 为1显示为列表，2是每两个按钮放一行
+            - $formkit: repeater
+              name: items
+              label: 链接
+              children:
+                - $formkit: textarea
+                  name: icon
+                  label: 图标  
+                  help: 支持 svg/img 标签
+                  validation: required
+                - $formkit: text
+                  name: title
+                  label: 标题
+                  validation: required
+                - $formkit: text
+                  name: url
+                  label: 链接
+                  validation: required
+        - $formkit: group
+          name: tagcloud
+          label: 标签云组件
+          value:
+            title: 标签云
+            min_font: 12
+            max_font: 24
+            amount: 100
+            color: false
+            start_color: "#BBBBEE"
+            end_color: "#337ab7"
+          children:
+            - $formkit: text
+              name: title
+              label: 标题
+            - $formkit: number
+              name: min_font
+              label: 最大字体
+            - $formkit: number
+              name: max_font
+              label: 最小字体
+            - $formkit: number
+              name: amount
+              label: 数量
+            - $formkit: checkbox
+              name: color
+              label: 使用颜色
+            - $formkit: color
+              name: start_color
+              label: 开始的颜色
+            - $formkit: color
+              name: end_color
+              label: 结束的颜色
+        - $formkit: group
+          name: tagtree
+          label: tagtree
+          value:
+            expand_all: false
+            expand_active: true
+            show_tagcon: true
+          children:
+            - $formkit: checkbox
+              name: expand_all
+              label: 展开所有节点
+            - $formkit: checkbox
+              name: expand_active
+              label: 展开当前节点
+            - $formkit: checkbox
+              name: show_tagcon
+              label: 显示标签 icon
+        
+    - group: photos
+      label: 图库
+      formSchema:
+        - $formkit: select
+          name: layout
+          label: layout
+          value: flow
+          options:
+            - label: grid
+              value: grid
+            - label: flow
+              value: flow
+        - $formkit: select
+          name: size
+          label: size
+          value: mix
+          options:
+            - label: s
+              value: s
+            - label: m
+              value: m
+            - label: l
+              value: l
+            - label: xl
+              value: xl
+            - label: mix
+              value: mix
+        - $formkit: select
+          name: ratio
+          label: ratio
+          value: square
+          options:
+            - label: origin
+              value: origin
+            - label: square
+              value: square
+
+    - group: default
+      label: 默认图片
+      formSchema:
+        - $formkit: attachment
+          name: avatar
+          label: 头像
+          value: /themes/theme-stellar/assets/img/3442075.svg
+          accepts:
+            - "image/*"
+        - $formkit: attachment
+          name: link
+          label: 链接
+          value: /themes/theme-stellar/assets/img/8f277b4ee0ecd.svg
+          accepts:
+            - "image/*"
+        - $formkit: attachment
+          name: cover
+          label: 封面
+          value: /themes/theme-stellar/assets/img/76b86c0226ffd.svg
+          accepts:
+            - "image/*"
+        - $formkit: attachment
+          name: banner
+          label: 横幅
+          value: /themes/theme-stellar/assets/img/books.jpg
+          accepts:
+            - "image/*"
+        - $formkit: attachment
+          name: topic
+          label: 专题
+          value: /themes/theme-stellar/assets/img/10433048.png
+          accepts:
+            - "image/*"
+    
+    - group: plugins
+      label: 扩展插件
+      formSchema:
+        - $formkit: checkbox
+          name: preload
+          label: 预先加载页面
+          value: true
+        - $formkit: checkbox
+          name: swiper
+          label: 轮播图
+          value: true
+
+    - group: api_host
+      label: api地址
+      formSchema:
+        - $formkit: text
+          name: ghapi
+          label: ghapi
+          value: https://api.github.com
+        - $formkit: text
+          name: ghraw
+          label: ghraw
+          value: https://raw.githubusercontent.com
+        - $formkit: text
+          name: gist
+          label: gist
+          value: https://gist.github.com
+
+    - group: custom
+      label: 扩展设置
+      formSchema:
+        - $formkit: code
+          name: code_css
+          label: 自定义CSS代码
+          height: 200px
+          language: css
+        - $formkit: code
+          name: code_js
+          label: 自定义JavaScript代码
+          height: 200px
+          language: javascript
+        - $formkit: code
+          name: head_html
+          label: 自定义HTML代码-头部
+          height: 200px
+          language: html
+        - $formkit: code
+          name: footer_html
+          label: 自定义HTML代码-底部
+          height: 200px
+          language: html

@@ -1,26 +1,44 @@
 <!DOCTYPE html>
-<html
-  xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{layout :: html(head = null,content = ~{::content})}"
->
-  <th:block th:fragment="content">
-    <th:block th:each="archive : ${archives.items}">
-      <h1 th:text="${archive.year}"></h1>
-      <ul class="listing">
-        <th:block th:each="month : ${archive.months}">
-          <li th:each="post : ${month.posts}">
-            <a
-              th:href="@{${post.status.permalink}}"
-              th:title="${post.spec.title}"
-              th:text="${post.spec.title}"
-            ></a>
-          </li>
-        </th:block>
-      </ul>
-    </th:block>
-    <a th:if="${archives.hasPrevious()}" th:href="@{${archives.prevUrl}}">
-      上一页
-    </a>
-    <a th:if="${archives.hasNext()}" th:href="@{${archives.nextUrl}}">下一页</a>
+<html xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{modules/layout :: html(head = null,content = ~{::content},_left = ~{::left},_right = ~{::right},page_type = 'index',layout = 'undefined',_title = #{btn.archives},_type = null,_indent = null)}">
+
+
+<th:block th:fragment="left">
+  <th:block
+    th:replace="~{modules/partial/sidebar/logo :: logo('sidebar',null,${theme.config.logo.avatar},${theme.config.logo.title},${theme.config.logo.subtitle},'/')}">
   </th:block>
+  <div class="nav-area">
+    <th:block th:replace="~{modules/partial/sidebar/search}"></th:block>
+    <th:block th:replace="~{modules/partial/sidebar/menu :: menu('sidebar')}"></th:block>
+  </div>
+  <div th:replace="~{modules/partial/sidebar/widgets :: widgets(${theme.config.site_tree.index.leftbar})}"></div>
+  <th:block th:replace="~{modules/partial/sidebar/footer}"></th:block>
+</th:block>
+<th:block th:fragment="right">
+  <div th:replace="~{modules/partial/sidebar/widgets :: widgets(${theme.config.site_tree.index.rightbar})}"></div>
+</th:block>
+
+
+<th:block th:fragment="content">
+  <th:block
+    th:replace="~{modules/partial/sidebar/logo :: logo('main',null,${theme.config.logo.avatar},${theme.config.logo.title},${theme.config.logo.subtitle},'')}">
+  </th:block>
+  <th:block th:replace="~{modules/partial/main/navbar/index_nav_tabs_blog}" />
+  <div class="post-list archives">
+    <th:block th:each="archive : ${postFinder.archives(1, 0).items}">
+      <article id="archive">
+        <div class="archive-header h4" th:text="${archive.year}"></div>
+        <th:blcok th:each="month : ${archive.months}">
+          <div class="archive-list" th:each="post : ${month.posts}">
+            <a class="post fs14" th:href="@{${post.status.permalink}}">
+              <time th:text="${#dates.format(post.spec.publishTime,'mm-dd')}"></time>
+              <span th:text="${post.spec.title}"></span>
+            </a>
+          </div>
+        </th:blcok>
+      </article>
+    </th:block>
+  </div>
+</th:block>
+
 </html>

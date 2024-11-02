@@ -1,17 +1,35 @@
 <!DOCTYPE html>
-<html
-  xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{layout :: html(head = null,content = ~{::content})}"
->
-  <th:block th:fragment="content">
-    <h1>标签</h1>
-    <ul>
-      <li th:each="tag : ${tags}">
-        <a
-          th:href="@{${tag.status.permalink}}"
-          th:text="${tag.spec.displayName}"
-        ></a>
-      </li>
-    </ul>
+<html xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{modules/layout :: html(head = null,content = ~{::content},_left = ~{::left},_right = ~{::right},page_type = 'index',layout = 'tags',_title = #{btn.tags},_type = null,_indent = null)}">
+
+
+<th:block th:fragment="left">
+  <th:block
+    th:replace="~{modules/partial/sidebar/logo :: logo('sidebar',null,${theme.config.logo.avatar},${theme.config.logo.title},${theme.config.logo.subtitle},'/')}">
   </th:block>
+  <div class="nav-area">
+    <th:block th:replace="~{modules/partial/sidebar/search}"></th:block>
+    <th:block th:replace="~{modules/partial/sidebar/menu :: menu('sidebar')}"></th:block>
+  </div>
+  <div th:replace="~{modules/partial/sidebar/widgets :: widgets(${theme.config.site_tree.index.leftbar})}"></div>
+  <th:block th:replace="~{modules/partial/sidebar/footer}"></th:block>
+</th:block>
+<th:block th:fragment="right">
+  <div th:replace="~{modules/partial/sidebar/widgets :: widgets(${theme.config.site_tree.index.rightbar})}"></div>
+</th:block>
+
+<th:block th:fragment="content">
+  <th:block
+    th:replace="~{modules/partial/sidebar/logo :: logo('main',null,${theme.config.logo.avatar},${theme.config.logo.title},${theme.config.logo.subtitle},'')}">
+  </th:block>
+  <th:block th:replace="~{modules/partial/main/navbar/index_nav_tabs_blog}" />
+  <div class='post-list'>
+    <article id='tags'>
+      <a th:each="tagItem : ${tagFinder.listAll()}" class='tag' th:href="@{${tagItem.status.permalink}}">
+        <span class='name' th:text="${tagItem.spec.displayName}"></span>
+      </a>
+    </article>
+  </div>
+</th:block>
+
 </html>
