@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{modules/doc_layout :: html(head = null,content = ~{::content},_left = ~{::left},_right = ~{::right},page_type = 'content',layout = 'page',_title = ${project.spec.displayName},
+  _type = null,_indent = null)}">
+
+<th:block th:fragment="left">
+    <th:block
+        th:replace="~{modules/partial/sidebar/logo :: logo('sidebar',${icon},null,${project.spec.displayName},${project.spec.description},${project.status.permalink})}">
+    </th:block>
+    <div class="nav-area">
+        <th:block th:replace="~{modules/partial/sidebar/search}"></th:block>
+        <th:block th:replace="~{modules/partial/sidebar/menu :: menu('sidebar')}"></th:block>
+    </div>
+    <div th:replace="~{modules/partial/sidebar/widgets :: widgets(${theme.config.site_tree.doc.leftbar})}"></div>
+    <th:block th:replace="~{modules/partial/sidebar/footer}"></th:block>
+</th:block>
+
+<th:block th:fragment="right">
+    <div th:replace="~{modules/partial/sidebar/widgets :: widgets(${theme.config.site_tree.doc.rightbar})}"></div>
+</th:block>
+
+<th:block th:fragment="content">
+    <div class="article banner top">
+        <div class="content">
+            <div class="top bread-nav footnote">
+                <div class="left">
+                    <div class="flex-row" id="breadcrumb">
+                        <a class="cap breadcrumb" href="/">主页</a> 
+                        <span class="sep"></span>
+                        <a class="cap breadcrumb" id="menu" href="/docs">文档</a>
+                        <span class="sep"></span>
+                        <a class="cap breadcrumb" id="proj" th:href="${project.status.permalink}"
+                            th:text="${project.spec.displayName}"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom only-title">
+                <div class="text-area">
+                    <h1 class="text title"><span th:text="${docTree.spec.title}"></span></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="md-text content">
+        <th:block th:utext="${docInfo.content.content}"></th:block>
+    </article>
+</th:block>
+
+</html>

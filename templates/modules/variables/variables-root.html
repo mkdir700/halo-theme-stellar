@@ -1,0 +1,113 @@
+<style type="text/css" th:inline="css" th:with="background = ${#strings.listSplit(theme.config.style.color.background, ' ')},
+background_s_substring = ${#conversions.convert(#strings.substring(background[1], 0, 2), 'java.lang.Integer')},
+background_l_substring = ${#conversions.convert(#strings.substring(background[2], 0, 2), 'java.lang.Integer')},
+block = ${#strings.listSplit(theme.config.style.color.block, ' ')},
+block_s_substring = ${#conversions.convert(#strings.substring(block[1], 0, #strings.length(block[1]) - 1), 'java.lang.Integer')},
+code = ${#strings.listSplit(theme.config.style.color.code, ' ')},
+code_l_substring = ${#conversions.convert(#strings.substring(code[2], 0, #strings.length(code[2]) - 1), 'java.lang.Integer')},
+text = ${#strings.listSplit(theme.config.style.color.text, ' ')},
+text_l_substring = ${#conversions.convert(#strings.substring(text[2], 0, #strings.length(text[2]) - 1), 'java.lang.Integer')}">
+    :root {
+
+        /* 通用主题色 */
+        --color-theme: [(${theme.config.style.color.theme})];
+        --color-accent: [(${theme.config.style.color.accent})];
+        --color-link: [(${theme.config.style.color.link})];
+        --theme-link-opa-light: [(${theme.config.style.color.link})]33;
+        --theme-link-opa-dark: [(${theme.config.style.color.link})]66;
+        --color-hover: [(${theme.config.style.color.hover})];
+
+        /* 动态颜色 */
+        --color-background-h: [(${background[0]})];
+        --color-background-s: [(${background[1]})];
+        --color-background-l: [(${background[2]})];
+        --site-bg-dark: hsl(var(--color-background-h), [(${background_s_substring * 0.5 + '%'})], [(${((100 - background_l_substring) * 2 + 8) + '%'})]);
+
+        --color-block-h: [(${block[0]})];
+        --color-block-s: [(${block[1]})];
+        --color-block-l: [(${block[2]})];
+        --card-dark: hsl(var(--color-block-h), [(${block_s_substring * 1.2 + '%'})], 24%);
+
+
+        --color-code-h: [(${code[0]})];
+        --color-code-s: [(${code[1]})];
+        --color-code-l: [(${code[2]})];
+        --text-code-dark: hsl(var(--color-code-h), var(--color-code-s), [(${(100 - code_l_substring) * 1.2 + '%'})]);
+
+
+        --color-text-h: [(${text[0]})];
+        --color-text-s: [(${text[1]})];
+        --color-text-l: [(${text[2]})];
+
+        --text-p2-light: hsl(var(--color-text-h), var(--color-text-s), [(${text_l_substring  / 0.5 * 0.75 + '%'})]);
+        --text-p3-light: hsl(var(--color-text-h), var(--color-text-s), [(${text_l_substring  / 0.5 * 1.25 + '%'})]);
+        --text-p4-light: hsl(var(--color-text-h), var(--color-text-s), [(${text_l_substring  / 0.5 * 1.5 + '%'})]);
+        --text-meta-light: hsl(var(--color-text-h), var(--color-text-s), [(${text_l_substring  / 0.5 * 2 + '%'})]);
+
+        --text-p1-dark: hsl(var(--color-text-h), var(--color-text-s), [(${100 - text_l_substring  / 0.5 * 0.5 + '%'})]);
+        --text-p2-dark: hsl(var(--color-text-h), var(--color-text-s), [(${100 - text_l_substring  / 0.5 * 0.75 + '%'})]);
+        --text-p3-dark: hsl(var(--color-text-h), var(--color-text-s), [(${100 - text_l_substring  / 0.5 * 1.2 + '%'})]);
+        --text-p4-dark: hsl(var(--color-text-h), var(--color-text-s), [(${100 - text_l_substring  / 0.5 * 1.4 + '%'})]);
+        --text-meta-dark: hsl(var(--color-text-h), var(--color-text-s), [(${100 - text_l_substring  / 0.5 * 1.75 + '%'})]);
+
+
+
+        --ff-body: system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif;
+        --ff-codeblock: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
+        --ff-code: var(--ff-codeblock);
+        --ff-logo: var(--ff-body);
+
+        [# th:if="${not #strings.isEmpty(theme.config.style.font_family.body)}"]
+        --ff-body: [(${theme.config.style.font_family.body})];
+        [/]
+
+        [# th:if="${not #strings.isEmpty(theme.config.style.font_family.code)}"]
+        --ff-code: [(${theme.config.style.font_family.code})];
+        [/]
+
+        [# th:if="${not #strings.isEmpty(theme.config.style.font_family.codeblock)}"]
+        --ff-codeblock: [(${theme.config.style.font_family.codeblock})];
+        [/]
+
+        [# th:if="${not #strings.isEmpty(theme.config.style.font_family.logo)}"]
+        --ff-logo: [(${theme.config.style.font_family.logo})];
+        [/]
+
+
+        /* font size */
+        --fs-root: [(${theme.config.style.font_size.root})];
+        --fs-15: .9375rem;
+        --fs-14: .875rem;
+        --fs-13: .8125rem;
+        --fs-12: .75rem;
+
+        --fs-body: [(${theme.config.style.font_size.body})];
+        --fs-code: [(${theme.config.style.font_size.code})];
+        --fs-codeblock: [(${theme.config.style.font_size.codeblock})];
+
+        --fsh1: calc(var(--fs-body) + 9px);
+        --fsh2: calc(var(--fs-body) + 11px);
+        --fsh3: calc(var(--fs-body) + 7px);
+        --fsh4: calc(var(--fs-body) + 4px);
+        --fsh5: calc(var(--fs-body) + 2px);
+
+        --fsp0: calc(var(--fs-body) - 0px);
+        --fsp1: calc(var(--fs-body) - 1px);
+        --fsp2: calc(var(--fs-body) - 2px);
+        --fsp3: calc(var(--fs-body) - 3px);
+
+        --border-card-l: [(${theme.config.style.border_radius.card_l})];
+        --border-card: [(${theme.config.style.border_radius.card})];
+        --border-bar: [(${theme.config.style.border_radius.bar})];
+        --border-image: [(${theme.config.style.border_radius.image})];
+        --border-button: 4px;
+
+
+        --text-align: [(${theme.config.style.text_align})];
+
+        --nav-area-menu-columns: [(${theme.config.menubar.columns})];
+
+        --post-cover-ratio: [(${theme.config.article.cover_ratio})];
+    }
+
+</style>

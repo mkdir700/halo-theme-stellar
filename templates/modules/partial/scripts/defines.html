@@ -1,0 +1,22 @@
+<script type="text/javascript">
+    const ctx = {
+        date_suffix: {
+            just: '[[#{meta.date_suffix.just}]]',
+            min: '[[#{meta.date_suffix.min}]]',
+            hour: '[[#{meta.date_suffix.hour}]]',
+            day: '[[#{meta.date_suffix.day}]]',
+        },
+        root: '/',
+    };
+
+    const def = {
+        avatar: "[(${theme.config.default.avatar})]",
+        cover: "[(${theme.config.default.cover})]",
+    };
+    const deps = {
+        jquery: "[(@{/assets/libs/jquery/jquery.min.js?v=3.7.1})]",
+        marked: "[(@{/assets/libs/marked/marked.umd.min.js?v=13.0.1})]"
+    }
+
+
+</script>

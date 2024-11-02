@@ -1,0 +1,30 @@
+<widget class="widget-wrapper tagcloud">
+    <div class="widget-header dis-select">
+        <span class="name" th:text="${theme.config.widgets.tagcloud.title}"></span>
+    </div>
+    <div class="widget-body fs14 tagcloud">
+        <th:block th:with="tags = ${tagFinder.list(1,theme.config.widgets.tagcloud.amount)}">
+            <a th:each="tag : ${tags}" th:href="@{${tag.status.permalink}}" th:rel="${tag.status.visiblePostCount}"
+                class="tag" th:text="${tag.spec.displayName}"></a>
+        </th:block>
+    </div>
+    <th:block th:fragment="js">
+        <script type="text/javascript" th:src="@{/assets/libs/tagcloud/jquery.tagcloud.js}"></script>
+        <script>
+            $.fn.tagcloud.defaults = {
+                size: {
+                    start: [[${ #conversions.convert(theme.config.widgets.tagcloud.min_font, 'java.lang.Integer') }]]
+                    , end: [[${ #conversions.convert(theme.config.widgets.tagcloud.max_font, 'java.lang.Integer') }]]
+                    , unit: "px"
+                },
+                [# th:if="${theme.config.widgets.tagcloud.color}"]
+                color: { start: '[(${theme.config.widgets.tagcloud.start_color})]', end: '[(${theme.config.widgets.tagcloud.end_color})]' }
+                [/]
+                
+            };
+            $(function () {
+                $('.tagcloud a').tagcloud();
+            });
+        </script>
+    </th:block>
+</widget>

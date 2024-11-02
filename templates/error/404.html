@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+    th:replace="~{modules/layout :: html(head = null,content = ~{::content},_left = ~{::left},_right = ~{::right},page_type = 'index',layout = '404',_title = '404',_type = null,_indent = null)}">
+
+<th:block th:fragment="left">
+    <th:block
+        th:replace="~{modules/partial/sidebar/logo :: logo('sidebar',null,${theme.config.logo.avatar},${theme.config.logo.title},${theme.config.logo.subtitle},'/')}">
+    </th:block>
+    <div class="nav-area">
+        <th:block th:replace="~{modules/partial/sidebar/search}"></th:block>
+        <th:block th:replace="~{modules/partial/sidebar/menu :: menu('sidebar')}"></th:block>
+    </div>
+    <div th:replace="~{modules/partial/sidebar/widgets :: widgets(${theme.config.site_tree.error_page.leftbar})}"></div>
+    <th:block th:replace="~{modules/partial/sidebar/footer}"></th:block>
+</th:block>
+
+<th:block th:fragment="right">
+    <div th:replace="~{modules/partial/sidebar/widgets :: widgets(${theme.config.site_tree.error_page.rightbar})}"></div>
+</th:block>
+<th:block th:fragment="content">
+    <article class='md-text error-page'>
+        <h1><img id='error' th:src="${theme.config.style.error_page}" alt='404'></h1>
+        <p class='what'>
+            <strong>
+                [[#{page.error.what}]]
+            </strong>
+        </p>
+        <p class='why'>
+            [[#{page.error.why}]]
+        </p>
+        <br><br>
+        <a class="button" id="back" href="/">[[#{page.error.action}]]</a>
+    </article>
+</th:block>
+
+</html>

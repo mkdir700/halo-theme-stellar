@@ -1,0 +1,10 @@
+<div class="widgets" th:fragment="widgets(widgets)" th:if="${not #lists.isEmpty(widgets)}">
+    <th:block th:each="widget_data,iterStat : ${widgets}">
+        <th:block th:unless="${widget_data.widget=='markdown'}">
+            <th:block th:replace="~{'modules/widgets/'+ ${widget_data.widget}}" />
+        </th:block>
+        <th:block th:if="${widget_data.widget=='markdown'}">
+            <th:block th:replace="~{modules/widgets/markdown :: markdown(${widget_data})}" />
+        </th:block>
+    </th:block>
+</div>

@@ -1,0 +1,18 @@
+<th:block th:fragment="next (parentDocTree,docTrees)">
+    <a class="toc-link" th:text="${parentDocTree.spec.title}"></a>
+    <ol class="toc-child">
+        <li class="toc-item" th:fragment="single (docTrees)" th:each="currentDocTree : ${docTrees}">
+            <a class="toc-link" th:if="${currentDocTree.spec.type == 'DOC'}"
+                th:href="@{${currentDocTree.status.permalink}}" th:title="${currentDocTree.spec.title}"
+                th:classappend="${currentDocTree.metadata.name == docTree.metadata.name ? 'active' : ''}"
+                th:text="${currentDocTree.spec.title}">
+            </a>
+            <th:block th:if="${currentDocTree.spec.type == 'TREE'}">
+                <th:block
+                    th:replace="~{modules/doc-tree :: next (parentDocTree=${currentDocTree},docTrees=${currentDocTree.children})}">
+                </th:block>
+            </th:block>
+        </li>
+    </ol>
+
+</th:block>

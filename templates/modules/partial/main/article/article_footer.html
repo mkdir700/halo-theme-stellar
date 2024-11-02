@@ -1,0 +1,44 @@
+<div class="article-footer fs14" th:with="permalink = ${site.url+post.status.permalink}">
+    <section id="license">
+        <div class="header"><span>[[#{meta.license}]]</span></div>
+        <div class="body" 
+        th:if="${not #strings.isEmpty(theme.config.article.license)}" 
+        th:utext="${theme.config.article.license}">
+        </div>
+    </section>
+    <section id="share">
+        <div class="header"><span>[[#{meta.share}]]</span></div>
+        <div class="body">
+            <div class="link">
+                <input class="copy-area" readonly="true" id="copy-link"
+                    th:value="${permalink}">
+            </div>
+            <th:block th:if="${not #lists.isEmpty(theme.config.article.share)}">
+
+            </th:block>
+            <div class="social-wrap dis-select">
+                <a th:if="${#strings.contains(theme.config.article.share, 'wechat')}" class="social share-item wechat"
+                    onclick="util.toggle(&quot;qrcode-wechat&quot;)">
+                    <img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg">
+                </a>
+                <a th:if="${#strings.contains(theme.config.article.share, 'weibo')}" class="social share-item weibo" 
+                    target="_blank" 
+                    th:href="|https://service.weibo.com/share/share.php?url=${permalink}&amp;title=${post.spec.title}|">
+                    <img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/80c07e4dbb303.svg">
+                </a>
+                <a th:if="${#strings.contains(theme.config.article.share, 'email')}" class="social share-item email"
+                    th:href="|mailto:?subject=${post.spec.title}&amp;body=${permalink}|">
+                    <img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/a1b00e20f425d.svg">
+                </a>
+                <a th:if="${#strings.contains(theme.config.article.share, 'link')}" 
+                   class="social share-item link" th:onclick="util.copy(&quot;copy-link&quot;, [[#{message.copied}]])">
+                    <img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg">
+                </a>
+            </div>
+            <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0" 
+            th:if="${#strings.contains(theme.config.article.share, 'wechat')}">
+                <img th:src="|https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=${permalink}|">
+            </div>
+        </div>
+    </section>
+</div>

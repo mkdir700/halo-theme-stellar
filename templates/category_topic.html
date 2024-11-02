@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{modules/layout :: html(head = null,content = ~{::content},_left = ~{::left},_right = ~{::right},page_type = 'index',layout = 'index_topic',_title = ${singlePage.spec.title},_type = null,_indent = null)}">
+
+
+<th:block th:fragment="left">
+  <th:block
+    th:replace="~{modules/partial/sidebar/logo :: logo('sidebar',null,${theme.config.logo.avatar},${theme.config.logo.title},${theme.config.logo.subtitle},'/')}">
+  </th:block>
+  <div class="nav-area">
+    <th:block th:replace="~{modules/partial/sidebar/search}"></th:block>
+    <th:block th:replace="~{modules/partial/sidebar/menu :: menu('sidebar')}"></th:block>
+  </div>
+  <div th:replace="~{modules/partial/sidebar/widgets :: widgets(${theme.config.site_tree.index_topic.leftbar})}"></div>
+  <th:block th:replace="~{modules/partial/sidebar/footer}"></th:block>
+</th:block>
+<th:block th:fragment="right">
+  <div th:replace="~{modules/partial/sidebar/widgets :: widgets(${theme.config.site_tree.index_topic.rightbar})}"></div>
+</th:block>
+
+<th:block th:fragment="content">
+  <th:block
+    th:replace="~{modules/partial/sidebar/logo :: logo('main',null,${theme.config.logo.avatar},${theme.config.logo.title},${theme.config.logo.subtitle},'')}">
+  </th:block>
+  <th:block th:replace="~{modules/partial/main/navbar/index_nav_tabs_blog}" />
+  <th:block th:each="categoryName : ${theme.config.site_tree.index_topic.category}">
+    <th:block th:with="category = ${categoryFinder.getByName(categoryName)},
+      posts = ${postFinder.list({
+      page: 1,
+      size: 1,
+      categoryName: categoryName,
+      sort: {'spec.publishTime,desc', 'metadata.creationTimestamp,asc'}
+      })}">
+      <div class="post-list wiki topic" th:if="${posts.total>0}">
+        <th:block th:with="post = ${posts.items.get(0)}">
+          <a class="post-card wiki topic" th:href="@{${post.status.permalink}}">
+            <article class="md-text">
+              <div class="preview"
+                th:with="cover = ${#strings.isEmpty(category.spec.cover) ? theme.config.default.topic : category.spec.cover}">
+                <img class="lazy entered" th:src="${cover}" th:data-src="${cover}">
+              </div>
+              <div class="excerpt">
+                <h2 class="post-title" th:text="${category.spec.displayName}"></h2>
+                <p th:if="${not #strings.isEmpty(category.spec.description)}" th:text="${category.spec.description}">
+                </p>
+              </div>
+            </article>
+          </a>
+        </th:block>
+      </div>
+    </th:block>
+  </th:block>
+
+</th:block>
+
+</html>

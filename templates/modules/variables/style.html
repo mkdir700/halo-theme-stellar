@@ -1,0 +1,38 @@
+<style type="text/css" th:inline="css">
+    [# th:if="${theme.config.style.animated_avatar.animate == 'always'}"]
+        .logo-wrap a.avatar div.bg {
+            opacity: 1 !important
+            animation: spin infinite 4s
+            animation-timing-function: linear
+        }
+    [/]
+    [# th:if="${theme.config.style.animated_avatar.animate == 'auto'}"]
+        .logo-wrap a.avatar:hover div.bg {
+            opacity: 1!important;
+            animation: spin infinite 4s;
+            animation-timing-function: linear
+        }
+    [/]
+    [# th:if="${theme.config.style.leftbar.enable}"]
+        .l_left {
+            [# th:if="${not #strings.isEmpty(theme.config.style.leftbar.background_image)}"]
+            background-image: url("[(${theme.config.style.leftbar.background_image})]");
+            [/]
+            [# th:if="${not #strings.isEmpty(theme.config.style.leftbar.background)} "]
+            background: [(${theme.config.style.leftbar.background})];
+            [/]
+        }
+        [# th:if="${not #strings.isEmpty(theme.config.style.leftbar.blur_px) || not #strings.isEmpty(theme.config.style.leftbar.blur_bg)}"]
+            .l_left .leftbar-container {
+                [# th:if="${not #strings.isEmpty(theme.config.style.leftbar.blur_px)}"]
+                --blur-px: [(${theme.config.style.leftbar.blur_px})];
+                [/]
+                [# th:if="${not #strings.isEmpty(theme.config.style.leftbar.blur_bg)}"]
+                    --blur-bg: [(${theme.config.style.leftbar.blur_bg})];
+                [/]
+            }
+        [/]
+    [/]
+    
+    
+</style>

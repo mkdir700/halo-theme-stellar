@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html th:lang="${#locale.toLanguageTag}" xmlns:th="https://www.thymeleaf.org"
+  th:fragment="html (head,content,_left,_right,_title,page_type,layout,_type,_indent)"
+  th:data-theme="${theme.config.style.prefers_theme == 'auto' ? '' : theme.config.style.prefers_theme}"
+  th:with="site_title = ${not #strings.isEmpty(_title) ?  _title+' - '+site.title  :  #strings.isEmpty(site.subtitle) ? site.title :  site.title +' - ' +site.subtitle },
+  article_type = ${#strings.isEmpty(_type) ? theme.config.article.type : _type}, 
+  indent = ${#strings.isEmpty(_indent) ? (#strings.isEmpty(theme.config.article.indent) ?  (article_type == 'story' ? 'true' : 'false') : theme.config.article.indent ) : _indent}">
+
+<head th:replace="~{modules/head :: head}"></head>
+
+<body th:with="icon = ${#strings.isEmpty(project.spec.icon) ? theme.config.default.topic : project.spec.icon}">
+  <th:block th:unless="${linkNavigation.hasPrevious}">
+    <div class="l_cover wiki">
+      <article class="cover-wrap md-text">
+        <div class="preview cover">
+          <img th:src="${icon}">
+        </div>
+        <div class="cover-title"><span th:text="${project.spec.displayName}"></span></div>
+        <div class="description" th:text="${project.spec.description}"></div>
+        <div class="start-wrap"><a class="button start gradient" href="#start">开始使用</a></div>
+      </article>
+    </div>
+    <hr>
+  </th:block>
+  <div th:class="|l_body s:aa ${page_type} ${article_type}|" id="start" th:layout="${layout}"
+    th:classappend="${indent == 'true' ? 'text-indent' : ''}">
+    <aside class="l_left">
+      <div th:class="|leftbar-container${theme.config.style.leftbar.enable ? ' leftbar-blur' : ''}|">
+        <th:block th:replace="${_left}" />
+      </div>
+    </aside>
+    <div class="l_main" id="main">
+      <th:block th:replace="${content}" />
+      <th:block th:replace="~{modules/footer}" />
+      <div class="main-mask" onclick="sidebar.dismiss()"></div>
+    </div>
+    <aside class="l_right">
+      <th:block th:replace="${_right}" />
+    </aside>
+    <th:block th:replace="~{modules/partial/menubtn}" />
+  </div>
+  <div class="scripts">
+    <th:block th:replace="~{modules/partial/scripts}" />
+  </div>
+</body>
+
+</html>

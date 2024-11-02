@@ -1,0 +1,13 @@
+<footer class="footer dis-select">
+    <div class="social-wrap">
+        <a th:each="social : ${theme.config.footer.social}" 
+          th:with="is_contain = ${#strings.contains(social.url,'://')}"
+         class="social" 
+         th:title="${social.title}" 
+         th:href="${social.url}" 
+         th:target="${is_contain ? '_blank' : '_self'}" 
+         th::rel="${ is_contain ? 'external nofollow noopener noreferrer' : 'noopener noreferrer'}">
+         <th:block th:if="${not #strings.isEmpty(social.icon)}" th:utext="${social.icon}"></th:block>
+        </a>
+    </div>
+</footer>

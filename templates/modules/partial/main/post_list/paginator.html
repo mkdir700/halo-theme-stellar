@@ -1,0 +1,24 @@
+<th:block th:fragment="page(path,pageInfo)">
+    <div class="paginator-wrap dis-select" th:if="${pageInfo.hasPrevious() || pageInfo.hasNext()}">
+        <a th:if="${pageInfo.hasPrevious}" class="extend prev" rel="prev" th:href="@{${pageInfo.prevUrl}}"></a>
+        <span th:unless="${pageInfo.hasPrevious}" class="extend prev" rel="prev"></span>
+
+        <th:block th:if="${pageInfo.page > 2}">
+            <a class="page-number" th:href="${path+'/page/1'}">1</a>
+            <span class="space" th:if="${pageInfo.page != 3}">…</span>
+        </th:block>
+        <th:block th:each="index:${#numbers.sequence(pageInfo.page-1,pageInfo.page+1)}">
+            <span class="page-number current" th:if="${pageInfo.page} == ${index}"
+                th:text="${pageInfo.page}"></span>
+            <a th:unless="${pageInfo.page == index}" th:if="${index > 0 && index <= pageInfo.totalPages}"
+                class="page-number" th:href="${path+'/page/'+index}" th:text="${index}"></a>
+        </th:block>
+        <th:block th:if="${pageInfo.totalPages - pageInfo.page >= 2}">
+            <span class="space" th:if="${pageInfo.totalPages - pageInfo.page != 2}">…</span>
+            <a class="page-number" th:href="${path+'/page/'+pageInfo.totalPages}" th:text="${pageInfo.totalPages}"></a>
+        </th:block>
+        <a th:if="${pageInfo.hasNext}" class="extend next" rel="next" th:href="@{${pageInfo.nextUrl}}"></a>
+        <span th:unless="${pageInfo.hasNext}" class="extend next" rel="next"></span>
+    </div>
+</th:block>
+

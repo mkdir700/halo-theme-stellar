@@ -1,0 +1,15 @@
+<div class="article banner top">
+    <img class="bg lazy entered" th:src="@{/assets/img/friends.jpg}" th:data-src="@{/assets/img/friends.jpg}">
+    <div class="content">
+        <div class="top"></div>
+        <div class="bottom" th:with="cover =${#strings.isEmpty(author.spec.avatar) ? theme.config.default.avatar : author.spec.avatar}">
+            <img class="avatar lazy entered" 
+                th:src="${cover}"
+                th:data-src="${cover}">
+            <div class="text-area">
+                <h1 class="text title"><span th:text="${author.spec.displayName}"></span></h1>
+                <div class="text subtitle" th:text="${author.spec.bio}"></div>
+            </div>
+        </div>
+    </div>
+</div>

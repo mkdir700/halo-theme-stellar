@@ -1,0 +1,19 @@
+<widget class="widget-wrapper timeline">
+    <div class="widget-header dis-select"><span class="name">瞬间</span></div>
+    <div class="widget-body fs14">
+        <div class="tag-plugin timeline ds-timeline" moment hide="footer" th:with="moments = ${momentFinder.list(1, 5)}">
+            <div th:each="moment,iStat : ${moments.items}" class="timenode"  th:index="${iStat.index}">
+                <div class="header">
+                    <div class="user-info">
+                        <img th:src="@{${moment.owner.avatar}}">
+                        <span th:text="${moment.owner.displayName}"></span>
+                    </div>
+                    <span th:text="${#dates.format(moment.spec.releaseTime, 'yyyy/MM/dd HH:mm:ss')}"></span>
+                </div>
+                <div class="body" th:with="content=${moment.spec.content}">
+                    <th:block th:utext="${content.html}"></th:block>
+                </div>
+            </div>
+        </div>
+    </div>
+</widget>

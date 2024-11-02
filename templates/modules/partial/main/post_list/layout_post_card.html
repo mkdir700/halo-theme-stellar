@@ -1,0 +1,8 @@
+
+
+
+<th:block th:with="layout = ${_layout == 'post' && not #strings.isEmpty(post.spec.cover) ? 'post photo' : _layout}">
+    <a th:class="|post-card ${layout}|" th:href="@{${post.status.permalink}}">
+        <th:block th:replace="~{modules/partial/main/post_list/post_card}" />
+    </a>
+</th:block>

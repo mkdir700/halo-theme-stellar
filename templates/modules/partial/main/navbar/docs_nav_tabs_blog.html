@@ -1,0 +1,5 @@
+<div class="navbar top">
+    <nav class="wiki">
+        <a th:each="item : ${theme.config.site_tree.index_docs.nav_tabs}"  th:href="${item.url}" th:text="${item.title}"></a>
+    </nav>
+</div>

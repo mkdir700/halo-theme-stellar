@@ -1,0 +1,13 @@
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: 'Copy',
+        success_text: 'Copied',
+        toast: '[[#{message.copied}]]',
+      };
+      utils.js('[(@{/assets/js/plugins/copycode.js?v={version}(version=${theme.spec.version})})]');
+    }
+  });
+</script>

@@ -1,0 +1,7 @@
+<div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme' th:text="${theme.config.comments.comment_title}">
+    </section>
+    <section th:class='|body cmt-body ${theme.config.comments.service}|'>
+        <th:block th:replace="~{'modules/partial/comments/'+ ${block}+ '/layout'}" />
+    </section>
+</div>

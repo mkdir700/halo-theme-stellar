@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{modules/layout :: html(head = null,content = ~{::content},_left = ~{::left},_right = ~{::right},page_type = 'content',layout = 'page',_title = ${title},
+  _type = null,_indent = null)}">
+
+<th:block th:fragment="left">
+  <th:block
+    th:replace="~{modules/partial/sidebar/logo :: logo('sidebar',null,${theme.config.logo.avatar},${theme.config.logo.title},${theme.config.logo.subtitle},'/')}">
+  </th:block>
+  <div class="nav-area">
+    <th:block th:replace="~{modules/partial/sidebar/search}"></th:block>
+    <th:block th:replace="~{modules/partial/sidebar/menu :: menu('sidebar')}"></th:block>
+  </div>
+  <div th:replace="~{modules/partial/sidebar/widgets :: widgets(${theme.config.site_tree.index.leftbar})}"></div>
+  <th:block th:replace="~{modules/partial/sidebar/footer}"></th:block>
+</th:block>
+
+<th:block th:fragment="right" th:with="repo = ''">
+  <div th:replace="~{modules/partial/sidebar/widgets :: widgets(${theme.config.site_tree.index.rightbar})}"></div>
+</th:block>
+
+<th:block th:fragment="content">
+  <div class="article banner top">
+    <div class="content">
+      <div class="top bread-nav footnote">
+        <div class="left">
+          <div class="flex-row" id="breadcrumb">
+            <a class="cap breadcrumb" href="/">主页</a>
+            <span class="sep"></span>
+            <a class="cap breadcrumb">图库</a>
+          </div>
+        </div>
+      </div>
+      <div class="bottom only-title">
+        <div class="text-area">
+          <h1 class="text title"><span th:text="${title}"></span></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <article class="md-text content" th:with="layoutType = ${theme.config.photos.layout}">
+    <div th:class="|tag-plugin gallery ${layoutType}-box|" th:size="${theme.config.photos.size}" th:ratio="${theme.config.photos.ratio}">
+      <div th:class="|${layoutType}-cell|" th:each="photo : ${photos.items}">
+        <img data-fancybox="gallery-1"
+          th:src="${photo.spec.url}"
+          th:alt="${photo.spec.description}"
+          data-ll-status="loading">
+        <div class="image-meta">
+          <span th:if="${not #strings.isEmpty(photo.spec.description)}" class="image-caption" th:text="${photo.spec.description}"></span>
+        </div>
+      </div>
+    </div>
+    <th:block th:replace="~{modules/partial/main/post_list/paginator :: page('/photos',${photos})}"></th:block>
+  </article>
+</th:block>
+
+</html>

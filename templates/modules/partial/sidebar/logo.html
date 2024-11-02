@@ -1,0 +1,26 @@
+<header th:fragment="logo(where,icon,avatar,title,subtitle,url)" th:class="|header${where == 'main' ? ' mobile-only' : ''}|">
+    <div class="logo-wrap">
+        <div th:if="${not #strings.isEmpty(icon)}" class="icon"><img no-lazy class="icon" th:src="${icon}"></div>
+        <th:block th:unless="${not #strings.isEmpty(icon)}">
+            <a th:if="${not #strings.isEmpty(avatar)}" class="avatar" href="/about">
+                <div th:if="${not #strings.isEmpty(theme.config.style.animated_avatar.animate)}" 
+                class="bg" th:style="|opacity:0;background-image:url(${theme.config.style.animated_avatar.background});|"></div>
+                <img no-lazy class="avatar" th:src="${avatar}">
+            </a>
+        </th:block>
+
+        <a class="title" th:if="${not #strings.isEmpty(title)}" th:href="${url}">
+            <div class="main" ff="title" th:text="${title}"></div>
+
+            <th:block th:if="${not #strings.isEmpty(subtitle)}" 
+                th:with="sub = ${#strings.listSplit(subtitle, '|')}">
+                <th:block th:if="${sub.size() > 1}">
+                    <div class="sub normal cap" th:text="${sub[0]}"></div>
+                    <div class="sub hover cap" style="opacity:0" th:text="${sub[1]}"></div>
+                </th:block>
+            
+                <div th:unless="${sub.size() > 1}" class="sub cap" th:text="${subtitle}"></div>
+            </th:block>
+        </a>
+    </div>
+</header>

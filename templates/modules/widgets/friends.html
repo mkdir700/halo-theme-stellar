@@ -1,0 +1,20 @@
+<widget class="widget-wrapper">
+    <div class="widget-header dis-select">
+        <span class="name">朋友圈动态</span>
+    </div>
+    <div class="widget-body fs14">
+        <div class="tag-plugin timeline ds-fcircle" moment th:with="friends = ${friendFinder.list(1, 5)}">
+            <div th:each="friend,iStat : ${friends.items}" class="timenode" th:index="${iStat.index}">
+                <div class="header">
+                    <a class="user-info" th:href="${friend.spec.authorUrl}" target="_blank">
+                        <img th:src="${friend.spec.logo}">
+                        <span th:text="${friend.spec.author}"></span>
+                </div>
+                <span th:text="${#dates.format(friend.spec.pubDate, 'yyyy/MM/dd HH:mm:ss')}"></span>
+            </div>
+            <a class="body" th:href="${friend.spec.postLink}" target="_blank"
+                rel="external nofollow noopener noreferrer" th:text="${friend.spec.title}"></a>
+        </div>
+    </div>
+    </div>
+</widget>

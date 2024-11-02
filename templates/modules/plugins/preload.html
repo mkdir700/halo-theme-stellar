@@ -1,0 +1,11 @@
+<th:block th:if="${theme.config.plugins.preload}">
+    <script>
+        window.FPConfig = {
+            delay: 0,
+            ignoreKeywords: [],
+            maxRPS: 5,
+            hoverDelay: 25
+        };
+    </script>
+    <script defer th:src="@{/assets/libs/preload/flying-pages.min.js}"></script>
+</th:block>

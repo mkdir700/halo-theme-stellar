@@ -1,0 +1,20 @@
+<footer class="page-footer footnote">
+    <hr>
+    <div class="sitemap" th:if="${not #lists.isEmpty(theme.config.footer.sitemap)}">
+        <th:block th:each="name : ${theme.config.footer.menu_names}">
+            <div class="sitemap-group" th:with="menu = ${menuFinder.getByName(name)}">
+                <span class="fs15" th:text="${menu.spec.displayName}"></span>
+                <th:block th:each="menuItem : ${menu.menuItems}">
+                    <a th:href="@{${menuItem.status.href}}" th:text="${menuItem.status.displayName}"></a>
+                </th:block>
+            </div>
+        </th:block>
+    </div>
+    <div class="text">
+      <th:block th:if="${not #strings.isEmpty(theme.config.footer.content)}"
+        th:utext="${theme.config.footer.content}"> </th:block>      
+    </div>
+    <halo:footer />
+    <th:block th:if="${not #strings.isEmpty(theme.config.custom.footer_html)}"
+        th:utext="${theme.config.custom.footer_html}"> </th:block>
+</footer>

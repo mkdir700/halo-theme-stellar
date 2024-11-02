@@ -1,0 +1,71 @@
+apiVersion: v1alpha1
+kind: AnnotationSetting
+metadata:
+  generateName: annotation-setting-
+spec:
+  targetRef:
+    group: content.halo.run
+    kind: Post
+  formSchema:
+    - $formkit: "select"
+      name: "stellar_post_type"
+      label: "文章类型"
+      value: "tech"
+      options:
+        - label: 技术类文章
+          value: "tech"
+        - label: 文学类文章
+          value: "story"
+    - $formkit: "select"
+      name: "stellar_post_indent"
+      label: "是否缩进"
+      value: "false"
+      options:
+        - label: 是
+          value: "true"
+        - label: 否
+          value: "false"
+    - $formkit: "text"
+      name: "stellar_post_repo"
+      label: "显示 GitHub 仓库基础信息"
+      help: "仓库持有者和仓库名，格式：chengzhongxue/halo-theme-stellar"
+    - $formkit: "code"
+      name: "stellar_post_license"
+      label: "文章许可协议"
+      height: "200px"
+      language: "html"
+
+---
+
+apiVersion: v1alpha1
+kind: AnnotationSetting
+metadata:
+  generateName: annotation-setting-
+spec:
+  targetRef:
+    group: content.halo.run
+    kind: SinglePage
+  formSchema:
+    - $formkit: "select"
+      name: "stellar_page_type"
+      label: "文章类型"
+      value: "tech"
+      options:
+        - label: 技术类文章
+          value: "tech"
+        - label: 文学类文章
+          value: "story"
+    - $formkit: "select"
+      name: "stellar_page_indent"
+      label: "是否缩进"
+      value: "false"
+      options:
+        - label: 是
+          value: "true"
+        - label: 否
+          value: "false"
+    - $formkit: "text"
+      name: "stellar_page_repo"
+      label: "显示 GitHub 仓库基础信息"
+      help: "仓库持有者和仓库名，格式：chengzhongxue/halo-theme-stellar"
+    

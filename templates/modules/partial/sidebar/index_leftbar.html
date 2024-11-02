@@ -1,0 +1,7 @@
+<th:block th:replace="~{modules/partial/sidebar/logo :: logo('main',null,${theme.config.logo.avatar},${theme.config.logo.title},${theme.config.logo.subtitle},'')}">
+</th:block>
+<div class="nav-area">
+  <th:block th:replace="~{modules/partial/sidebar/search}"></th:block>
+  <th:block th:replace="~{modules/partial/sidebar/menu :: menu('sidebar')}"></th:block>
+</div>
+<div th:replace="~{modules/partial/sidebar/widgets :: widgets(${theme.config.site_tree.index.leftbar})}"></div>

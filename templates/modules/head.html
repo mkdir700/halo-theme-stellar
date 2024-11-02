@@ -1,0 +1,26 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="halo-theme" th:content="${theme.spec.repo}" th:theme-name="${theme.spec.displayName}" th:theme-version="${theme.spec.version}">
+    <meta name="generator" th:content="${'Halo' +site.version}">
+    <meta http-equiv='x-dns-prefetch-control' content='on' />
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+    <meta name="theme-color" content="#f9fafb">
+    <title th:text="${site_title}"></title>
+    <link rel="alternate" href="/rss.xml" th:title="${site.title}" type="application/rss+xml">
+    <th:block th:replace="~{'modules/variables/variables-root'}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/main.css?v={version}(version=${theme.spec.version})}">
+    <th:block th:replace="~{'modules/variables/style'}"/>
+    <link rel="shortcut icon" th:href="${site.favicon}">
+    <script th:src="@{/assets/libs/jquery/jquery.min.js?v=3.7.1}" async=""></script>
+    <th:block th:if="${head != null}">
+        <th:block th:replace="${head}" />
+    </th:block>
+    <style type="text/css" th:if="${not #strings.isEmpty(theme.config.custom.code_css)}"
+           th:utext="${theme.config.custom.code_css}"></style>
+</head>

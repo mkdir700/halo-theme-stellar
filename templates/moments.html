@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{modules/layout :: html(head = null,content = ~{::content},_left = ~{::left},_right = ~{::right},page_type = 'content',layout = 'page',_title = ${title},
+  _type = null,_indent = null)}">
+
+<th:block th:fragment="left">
+    <th:block
+        th:replace="~{modules/partial/sidebar/logo :: logo('sidebar',null,${theme.config.logo.avatar},${theme.config.logo.title},${theme.config.logo.subtitle},'/')}">
+    </th:block>
+    <div class="nav-area">
+        <th:block th:replace="~{modules/partial/sidebar/search}"></th:block>
+        <th:block th:replace="~{modules/partial/sidebar/menu :: menu('sidebar')}"></th:block>
+    </div>
+    <div th:replace="~{modules/partial/sidebar/widgets :: widgets(${theme.config.site_tree.index.leftbar})}"></div>
+    <th:block th:replace="~{modules/partial/sidebar/footer}"></th:block>
+</th:block>
+
+<th:block th:fragment="right" th:with="repo = null">
+    <div th:replace="~{modules/partial/sidebar/widgets :: widgets(${theme.config.site_tree.index.rightbar})}"></div>
+</th:block>
+
+<th:block th:fragment="content">
+    <div class="article banner top">
+        <img class="bg lazy entered" th:src="@{/assets/img/notes.jpg}" th:data-src="@{/assets/img/notes.jpg}">
+        <div class="content">
+            <div class="top bread-nav footnote">
+                <div class="left">
+                    <div class="flex-row" id="breadcrumb">
+                        <a class="cap breadcrumb" href="/">主页</a>
+                        <span class="sep"></span>
+                        <a class="cap breadcrumb">瞬间</a>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom only-title">
+                <div class="text-area">
+                    <h1 class="text title"><span th:text="${title}"></span></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="md-text content">
+        <div class="tag-plugin tabs">
+            <div class="nav-tabs">
+                <div th:each="tag,iStat : ${tags}" class="moment-tab"
+                    th:classappend="${#lists.contains(param.tag, tag.name) ? 'active' : ''}">
+                    <a th:href="|/moments?tag=${tag.name}|">[[${tag.name}]]</a>
+                </div>
+            </div>
+            <div class="tab-content">
+                <div class="tag-plugin timeline ds-timeline" moment>
+                    <div th:each="moment,iStat : ${moments.items}" class="timenode" th:index="${iStat.index}">
+                        <div class="header">
+                            <div class="user-info">
+                                <img th:src="@{${moment.owner.avatar}}"
+                                    th:onerror="javascript:this.src='[(${theme.config.default.avatar})]';">
+                                <span th:text="${moment.owner.displayName}"></span>
+                            </div>
+                            <span th:text="${#dates.format(moment.spec.releaseTime, 'yyyy/MM/dd HH:mm:ss')}"></span>
+                        </div>
+                        <div class="body" th:with="content=${moment.spec.content}">
+                            <th:block th:utext="${content.html}"></th:block>
+                            <div class="footer">
+                                <div class="flex left"></div>
+                                <div class="flex right">
+                                    <a class="item comments last" target="_blank"
+                                        rel="external nofollow noopener noreferrer">
+                                        <span>
+                                            <svg t="1666270368054" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                                xmlns="http://www.w3.org/2000/svg" p-id="2528" width="200" height="200">
+                                                <path
+                                                    d="M952 64H72C32.3 64 0 96.3 0 136v508c0 39.7 32.3 72 72 72h261l128 128c14 14 32.5 21.1 50.9 21.1s36.9-7 50.9-21.1l128-128h261c39.7 0 72-32.3 72-72V136c0.2-39.7-32.1-72-71.8-72zM222 462c-39.8 0-72-32.2-72-72s32.2-72 72-72 72 32.2 72 72-32.2 72-72 72z m290-7.7c-39.8 0-72-32.2-72-72s32.2-72 72-72 72 32.2 72 72c0 39.7-32.2 72-72 72z m290 8c-39.8 0-72-32.2-72-72s32.2-72 72-72 72 32.2 72 72c0 39.7-32.2 72-72 72z"
+                                                    p-id="2529"></path>
+                                            </svg>[[${' '+ moment.stats.totalComment}]]
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <th:block th:replace="~{modules/partial/main/post_list/paginator :: page('/moments',${moments})}">
+                </th:block>
+            </div>
+        </div>
+    </article>
+    <!-- <th:block th:with="name=${singlePage.metadata.name},kind='SinglePage',group='content.halo.run'">
+        <th:block th:replace="~{modules/partial/comments/default/layout}" />
+    </th:block> -->
+</th:block>
+
+</html>

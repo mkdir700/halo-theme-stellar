@@ -1,0 +1,12 @@
+<widget class="widget-wrapper toc multi">
+    <div class="widget-body fs14">
+        <div class="doc-tree active">
+            <a class="doc-tree-link active"><span class="toc-text" th:text="${project.spec.displayName+'目录'}"></span></a>
+            <ol class="toc">
+                <li class="toc-item">
+                    <th:block th:replace="~{modules/doc-tree :: single(docTrees=${docTrees})}" />
+                </li>
+            </ol>
+        </div>
+    </div>
+</widget>

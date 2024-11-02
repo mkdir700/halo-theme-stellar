@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{modules/layout :: html(head = null,content = ~{::content},_left = ~{::left},_right = ~{::right},page_type = 'index',layout = 'index_wiki',_title = '文档',_type = null,_indent = null)}">
+
+<th:block th:fragment="left">
+  <th:block
+    th:replace="~{modules/partial/sidebar/logo :: logo('sidebar',null,${theme.config.logo.avatar},${theme.config.logo.title},${theme.config.logo.subtitle},'/')}">
+  </th:block>
+  <div class="nav-area">
+    <th:block th:replace="~{modules/partial/sidebar/docs_search}"></th:block>
+    <th:block th:replace="~{modules/partial/sidebar/menu :: menu('sidebar')}"></th:block>
+  </div>
+  <div th:replace="~{modules/partial/sidebar/widgets :: widgets(${theme.config.site_tree.index_docs.leftbar})}"></div>
+  <th:block th:replace="~{modules/partial/sidebar/footer}"></th:block>
+</th:block>
+<th:block th:fragment="right">
+  <div th:replace="~{modules/partial/sidebar/widgets :: widgets(${theme.config.site_tree.index_docs.rightbar})}"></div>
+</th:block>
+
+<th:block th:fragment="content">
+  <th:block
+    th:replace="~{modules/partial/sidebar/logo :: logo('main',null,${theme.config.logo.avatar},${theme.config.logo.title},${theme.config.logo.subtitle},'')}">
+  </th:block>
+  <th:block th:replace="~{modules/partial/main/navbar/docs_nav_tabs_blog}" />
+
+  <div th:each="project : ${projects}" class="post-list wiki">
+    <a class="post-card wiki" th:href="${project.status.permalink}">
+      <article class="md-text">
+        <div class="preview" th:with="icon = ${#strings.isEmpty(project.spec.icon) ? theme.config.default.topic : project.spec.icon}">
+          <img class="lazy entered" 
+          th:src="${icon}"
+          th:data-src="${icon}">
+        </div>
+        <div class="excerpt">
+          <h2 class="post-title" th:text="${project.spec.displayName}"></h2>
+          <p th:text="${project.spec.description}"></p>
+        </div>
+      </article>
+    </a>
+  </div>
+</th:block>
+
+</html>

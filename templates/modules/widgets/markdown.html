@@ -1,0 +1,22 @@
+<widget class="widget-wrapper markdown" th:fragment="markdown(widget_data)">
+    <div class="widget-header dis-select">
+        <span class="name" th:text="${widget_data.markdown.title}"></span>
+    </div>
+    <div class="widget-body fs14">
+        <th:block th:utext="${widget_data.markdown.content}"></th:block>
+        <div th:if="${not #strings.isEmpty(widget_data.markdown.src)}" class="ds-mdrender"
+            th:src="${widget_data.markdown.src}"></div>
+        <th:blcok th:if="${not #lists.isEmpty(widget_data.markdown.items)}">
+            <div th:with="items = ${widget_data.markdown.items},columns = ${widget_data.markdown.columns}"
+                th:class="linklist ${columns == 1 && items.size() > 1 ? 'left' : 'center'}"
+                th:style="items.size() == 1 ? 'grid-template-columns:repeat(1,1fr);' : 'grid-template-columns:repeat([(${columns})],1fr);'">
+                <a th:each="item : ${items}" class="link" th:title="${item.title}" th:href="${item.url}">
+                    <div class="flex">
+                        <th:block th:if="${not #strings.isEmpty(item.icon)}" th:utext="${item.icon}"></th:block>
+                        <span th:if="${columns <= 2}" th:text="${item.title}"></span>
+                    </div>
+                </a>
+            </div>
+        </th:blcok>
+    </div>
+</widget>

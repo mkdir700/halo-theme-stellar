@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+    th:replace="~{modules/layout :: html(head = null,content = ~{::content},_left = ~{::left},_right = ~{::right},page_type = 'content',layout = 'page',_title = '友链',_type = null,_indent = null)}">
+
+<th:block th:fragment="left">
+    <th:block
+        th:replace="~{modules/partial/sidebar/logo :: logo('sidebar',null,${theme.config.logo.avatar},${theme.config.logo.title},${theme.config.logo.subtitle},'/')}">
+    </th:block>
+    <div class="nav-area">
+        <th:block th:replace="~{modules/partial/sidebar/search}"></th:block>
+        <th:block th:replace="~{modules/partial/sidebar/menu :: menu('sidebar')}"></th:block>
+    </div>
+    <div th:replace="~{modules/partial/sidebar/widgets :: widgets(${theme.config.site_tree.index.leftbar})}"></div>
+    <th:block th:replace="~{modules/partial/sidebar/footer}"></th:block>
+</th:block>
+<th:block th:fragment="right">
+    <div th:replace="~{modules/partial/sidebar/widgets :: widgets(${theme.config.site_tree.index.rightbar})}"></div>
+</th:block>
+
+<th:block th:fragment="content">
+    <th:block th:replace="~{modules/partial/main/navbar/link_article_banner}" />
+    <article class="md-text content">
+        <th:block th:each="group,iterStat : ${groups}" th:if="${not #strings.isEmpty(group.spec.displayName)}">
+            <div class="tag-plugin quot">
+                <p class="content" type="icon">
+                    <img class="icon prefix lazy entered" th:src="@{/assets/img/63567d3e07da3.png}"
+                        th:data-src="@{/assets/img/63567d3e07da3.png}">
+                    <span class="text" th:text="${group.spec.displayName}"></span>
+                    <span class="empty"></span>
+                </p>
+            </div>
+            <div class="tag-plugin users-wrap">
+                <div class="ds-friends">
+                    <div class="grid-box">
+                        <div class="grid-cell user-card" th:each="link : ${group.links}">
+                            <a class="card-link" target="_blank" rel="external nofollow noopener noreferrer"
+                                th:href="${link.spec.url}">
+                                <img th:with="logo =${#strings.isEmpty(link.spec.logo) ? theme.config.default.avatar : link.spec.logo}"
+                                    th:src="${logo}"
+                                    th:onerror="javascript:this.removeAttribute('data-src');this.src=[[${theme.config.default.avatar}]];">
+                                <div class="name image-meta">
+                                    <span class="image-caption" th:text="${link.spec.displayName}"></span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </th:block>
+    </article>
+    <th:block th:with="name=${pluginName},kind='Plugin',group='plugin.halo.run'">
+        <th:block th:replace="~{modules/partial/comments/default/layout}" />
+    </th:block>
+
+</th:block>
+
+</html>

@@ -1,0 +1,16 @@
+<widget class="widget-wrapper linklist" th:if="${not #lists.isEmpty(theme.config.widgets.linklist.items)}">
+    <div class="widget-header dis-select">
+        <span class="name" th:text="${theme.config.widgets.linklist.title}"></span>
+    </div>
+    <div class="widget-body fs14" th:with="items = ${theme.config.widgets.linklist.items},columns = ${theme.config.widgets.linklist.columns}">
+        <div th:class="linklist ${columns == 1 && items.size() > 1 ? 'left' : 'center'}"
+            th:style="items.size() == 1 ? 'grid-template-columns:repeat(1,1fr);' : 'grid-template-columns:repeat([(${columns})],1fr);'">
+            <a th:each="item : ${items}" class="link" th:title="${item.title}" th:href="${item.url}">
+                <div class="flex">
+                    <th:block th:if="${not #strings.isEmpty(item.icon)}" th:utext="${item.icon}"></th:block>
+                    <span th:if="${columns <= 2}" th:text="${item.title}"></span>
+                </div>
+            </a>
+        </div>
+    </div>
+</widget>
