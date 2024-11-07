@@ -26,7 +26,7 @@ spec:
   settingName: "theme-stellar-setting"
   configMapName: "theme-stellar-configMap"
   version: "1.0.0"
-  requires: ">=2.0.0"
+  requires: ">=2.20.0"
   license:
     - name: "MIT license"
       url: "https://github.com/chengzhongxue/halo-theme-stellar/blob/main/LICENSE"
