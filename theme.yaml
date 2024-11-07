@@ -2,6 +2,10 @@ apiVersion: theme.halo.run/v1alpha1
 kind: Theme
 metadata:
   name: theme-stellar
+  annotations:
+    # Add supports for Halo App Store
+    # https://www.halo.run/store/apps/app-KxJeQ
+    "store.halo.run/app-id": "app-KxJeQ"
 spec:
   customTemplates:
     page:
@@ -20,7 +24,7 @@ spec:
     website: "https://github.com/chengzhongxue"
   description: 内置文档系统的简约商务风Halo主题，支持大量的标签组件和动态数据组件。
   logo: "/themes/theme-stellar/assets/img/icon.svg"
-  homepage: "https://github.com/chengzhongxue/halo-theme-stellar#readme"
+  homepage: "https://www.halo.run/store/apps/app-KxJeQ"
   repo: "https://github.com/chengzhongxue/halo-theme-stellar"
   issues: "https://github.com/chengzhongxue/halo-theme-stellar/issues"
   settingName: "theme-stellar-setting"
