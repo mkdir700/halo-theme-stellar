@@ -152,7 +152,7 @@ const init = {
           $("#data-toc a.toc-link").removeClass("active");
           var link = "#" + topSeg.attr("id");
           if (link != '#undefined') {
-            const highlightItem = $('#data-toc a.toc-link[href="' + encodeURI(link) + '"]');
+            const highlightItem = $('#data-toc a.toc-link[href="' + link + '"]');
             if (highlightItem.length > 0) {
               highlightItem.addClass("active");
             }
