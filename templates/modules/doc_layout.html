@@ -2,6 +2,7 @@
 <html th:lang="${#locale.toLanguageTag}" xmlns:th="https://www.thymeleaf.org"
   th:fragment="html (head,content,_left,_right,_title,page_type,layout,_type,_indent)"
   th:data-theme="${theme.config.style.prefers_theme == 'auto' ? '' : theme.config.style.prefers_theme}"
+  th:class="${theme.config.style.prefers_theme == 'auto' ? '' : theme.config.style.prefers_theme}"
   th:with="site_title = ${not #strings.isEmpty(_title) ?  _title+' - '+site.title  :  #strings.isEmpty(site.subtitle) ? site.title :  site.title +' - ' +site.subtitle },
   article_type = ${#strings.isEmpty(_type) ? theme.config.article.type : _type}, 
   indent = ${#strings.isEmpty(_indent) ? (#strings.isEmpty(theme.config.article.indent) ?  (article_type == 'story' ? 'true' : 'false') : theme.config.article.indent ) : _indent}">
