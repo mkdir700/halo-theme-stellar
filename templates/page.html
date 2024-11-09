@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org"
   th:replace="~{modules/layout :: html(head = null,content = ~{::content},_left = ~{::left},_right = ~{::right},page_type = 'content',layout = 'page',_title = ${singlePage.spec.title},
-  _type = ${#annotations.getOrDefault(page, 'stellar_page_type','tech')},_indent = ${#annotations.get(page, 'stellar_page_indent')})}">
+  _type = ${#annotations.getOrDefault(singlePage, 'stellar_page_type','tech')},_indent = ${#annotations.get(singlePage, 'stellar_page_indent')})}">
 
 <th:block th:fragment="left">
   <th:block
@@ -15,7 +15,7 @@
   <th:block th:replace="~{modules/partial/sidebar/footer}"></th:block>
 </th:block>
 
-<th:block th:fragment="right" th:with="repo = ${#annotations.get(page, 'stellar_page_repo')}">
+<th:block th:fragment="right" th:with="repo = ${#annotations.get(singlePage, 'stellar_page_repo')}">
   <div th:replace="~{modules/partial/sidebar/widgets :: widgets(${theme.config.site_tree.page.rightbar})}"></div>
 </th:block>
 
