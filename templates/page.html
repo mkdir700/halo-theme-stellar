@@ -21,7 +21,7 @@
 
 <th:block th:fragment="content">
   <article class="md-text content">
-    <th:block th:utext="${post.content.content}"></th:block>
+    <th:block th:utext="${singlePage.content.content}"></th:block>
   </article>
   <th:block th:with="name=${singlePage.metadata.name},kind='SinglePage',group='content.halo.run'">
     <th:block th:replace="~{modules/partial/comments/default/layout}" />

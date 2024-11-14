@@ -31,7 +31,7 @@
         <th:blcok th:each="month : ${archive.months}">
           <div class="archive-list" th:each="post : ${month.posts}">
             <a class="post fs14" th:href="@{${post.status.permalink}}">
-              <time th:text="${#dates.format(post.spec.publishTime,'mm-dd')}"></time>
+              <time th:text="${#dates.format(post.spec.publishTime,'MM-dd')}"></time>
               <span th:text="${post.spec.title}"></span>
             </a>
           </div>
