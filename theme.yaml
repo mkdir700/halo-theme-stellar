@@ -29,7 +29,7 @@ spec:
   issues: "https://github.com/chengzhongxue/halo-theme-stellar/issues"
   settingName: "theme-stellar-setting"
   configMapName: "theme-stellar-configMap"
-  version: "1.0.1"
+  version: "1.0.2"
   requires: ">=2.20.0"
   license:
     - name: "MIT license"

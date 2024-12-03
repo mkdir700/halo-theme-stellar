@@ -1,16 +1,18 @@
-<div class="related-wrap" id="read-next">
-    <section class="body" th:with="postCursor = ${postFinder.cursor(post.metadata.name)}">
-        <div class="item" id="prev">
-            <th:block th:if="${postCursor.hasPrevious()}">
-                <div class="note">[[#{meta.newer}]]</div>
-                <a th:href="${postCursor.previous.status.permalink}" th:text="${postCursor.previous.spec.title}"></a>
-            </th:block>
-        </div>
-        <div class="item" id="next">
-            <th:block th:if="${postCursor.hasNext()}">
-                <div class="note">[[#{meta.older}]]</div>
-                <a th:href="${postCursor.next.status.permalink}" th:text="${postCursor.next.spec.title}"></a>
-            </th:block>
-        </div>
-    </section>
-</div>
+<th:block th:with="postCursor = ${postFinder.cursor(post.metadata.name)}">
+    <div class="related-wrap" id="read-next" th:if="${postCursor.hasPrevious() || postCursor.hasNext()}">
+        <section class="body">
+            <div class="item" id="prev">
+                <th:block th:if="${postCursor.hasPrevious()}">
+                    <div class="note">[[#{meta.newer}]]</div>
+                    <a th:href="${postCursor.previous.status.permalink}" th:text="${postCursor.previous.spec.title}"></a>
+                </th:block>
+            </div>
+            <div class="item" id="next">
+                <th:block th:if="${postCursor.hasNext()}">
+                    <div class="note">[[#{meta.older}]]</div>
+                    <a th:href="${postCursor.next.status.permalink}" th:text="${postCursor.next.spec.title}"></a>
+                </th:block>
+            </div>
+        </section>
+    </div>
+</th:block>
