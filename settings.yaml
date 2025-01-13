@@ -384,7 +384,7 @@ spec:
           label: 文档列表页
           value:
             leftbar: 
-              - widget: recent_post
+              - widget: recent_post_in_category
             rightbar: []
             nav_tabs: 
               - title: "文档"
@@ -401,6 +401,8 @@ spec:
                   key: widget
                   label: "小工具"
                   options:
+                    - value: "recent_post_in_category"
+                      label: 最近文章(仅当前分类)
                     - value: "recent_post"
                       label: 最近文章
                     - value: "linklist"
