@@ -3,18 +3,18 @@
         <img class="lazy entered" th:src="${post.spec.cover}" th:data-src="${post.spec.cover}">
         <div class="cover-info" position="bottom">
             <div class="title" th:text="${post.spec.title}"></div>
-            <div class="cap" th:if="${!post.spec.excerpt.autoGenerate}" th:text="${post.spec.excerpt.raw}"></div>
+            <div class="cap" th:text="${post.status.excerpt}"></div>
         </div>
     </div>
 </th:block>
 <th:block th:unless="${not #strings.isEmpty(post.spec.cover)}">
     <article class="md-text">
         <div class="post-cover" th:if="${not #strings.isEmpty(post.spec.cover)}">
-            <img th:src="${post.spec.cover}"/>
+            <img th:src="${post.spec.cover}" />
         </div>
         <h2 class="post-title" th:text="${post.spec.title}"></h2>
-        <div class="excerpt" th:if="${!post.spec.excerpt.autoGenerate}">
-            <p th:text="${post.spec.excerpt.raw}"></p>
+        <div class="excerpt">
+            <p th:text="${post.status.excerpt}"></p>
         </div>
         <div class="meta cap">
             <span class="cap" id="post-meta">
