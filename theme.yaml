@@ -4,6 +4,11 @@ metadata:
   name: theme-stellar
 spec:
   customTemplates:
+    category:
+      - name: 文档分类模板
+        description:
+        screenshot:
+        file: category_doc.html
     page:
       - name: 专题分类模板
         description:
