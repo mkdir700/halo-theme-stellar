@@ -23,17 +23,16 @@
   </th:block>
   <th:block th:replace="~{modules/partial/main/navbar/docs_nav_tabs_blog}" />
 
-  <div th:each="project : ${projects}" class="post-list wiki">
-    <a class="post-card wiki" th:href="${project.status.permalink}">
+  <div th:each="post,iter : ${posts.items}" class="post-list wiki">
+    <a class="post-card wiki" th:href="@{${post.status.permalink}}">
       <article class="md-text">
-        <div class="preview" th:with="icon = ${#strings.isEmpty(project.spec.icon) ? theme.config.default.topic : project.spec.icon}">
-          <img class="lazy entered" 
-          th:src="${icon}"
-          th:data-src="${icon}">
+        <div class="preview"
+          th:with="icon = ${#strings.isEmpty(post.spec.cover) ? theme.config.default.topic : post.spec.cover}">
+          <img class="lazy entered" th:src="${post.spec.cover}" th:data-src="${icon}">
         </div>
         <div class="excerpt">
-          <h2 class="post-title" th:text="${project.spec.displayName}"></h2>
-          <p th:text="${project.spec.description}"></p>
+          <h2 class="post-title" th:text="${post.spec.title}"></h2>
+          <p th:text="${post.status.excerpt}"></p>
         </div>
       </article>
     </a>
