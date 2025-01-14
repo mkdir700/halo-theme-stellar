@@ -31,11 +31,12 @@
           <img class="lazy entered" th:src="${post.spec.cover}" th:data-src="${icon}">
         </div>
         <div class="excerpt">
-          <div class="caps">
-            <th:block th:each="tag : ${post.tags}">
-              <span class="cap breadcrumb"
-                th:style="'--text-p2:' + ${tag.spec.color} + ';--theme-block:' + ${tag.spec.color} + '20'"
-                th:text="${tag.spec.displayName}"></span>
+          <div class="caps" th:if="${not #lists.isEmpty(post.spec.categories)}">
+            <th:block th:each="category : ${post.categories}">
+              <th:block th:with="color=${#annotations.get(category, 'stellar_category_color' )}">
+                <span class="cap breadcrumb" th:style="'--text-p2:' + ${color} + ';--theme-block:' + ${color} + '20'"
+                  th:text="${category.spec.displayName}"></span>
+              </th:block>
             </th:block>
           </div>
           <h2 class="post-title" th:text="${post.spec.title}"></h2>
