@@ -68,4 +68,19 @@ spec:
       name: "stellar_page_repo"
       label: "显示 GitHub 仓库基础信息"
       help: "仓库持有者和仓库名，格式：chengzhongxue/halo-theme-stellar"
-    
+
+---
+
+apiVersion: v1alpha1
+kind: AnnotationSetting
+metadata:
+  generateName: annotation-setting-
+spec:
+  targetRef:
+    group: content.halo.run
+    kind: Category
+  formSchema:
+    - $formkit: "color"
+      name: "stellar_category_color"
+      label: "分类颜色"
+      value: "#2196f3"
