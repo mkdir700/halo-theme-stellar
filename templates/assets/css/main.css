@@ -1879,7 +1879,7 @@ div.toast.show {
   background: var(--site-bg);
   position: sticky;
   position: -webkit-sticky;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   margin-top: -8px
 }
 
