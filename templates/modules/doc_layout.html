@@ -17,7 +17,8 @@
           <img th:src="${icon}">
         </div>
         <div class="cover-title"><span th:text="${project.spec.displayName}"></span></div>
-        <div class="description" th:text="${project.spec.description}"></div>
+        <!--? 直接使用 project.spec.description 会报错 -->
+        <div class="description" th:text="${_description}"></div>
         <div class="start-wrap"><a class="button start gradient" href="#start">开始使用</a></div>
       </article>
     </div>

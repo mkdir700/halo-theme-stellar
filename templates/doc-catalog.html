@@ -1,0 +1,22 @@
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{plugin:plugin-docsme:modules/layout :: html(content = ~{::content}, head = null, before_end_body = null)}">
+<th:block th:fragment="content">
+  <th:block th:replace="~{plugin:plugin-docsme:modules/breadcrumbs}" />
+  <th:block th:replace="~{plugin:plugin-docsme:modules/top-actions}" />
+
+  <div class="mt-14 grid grid-cols-1 gap-3 md:mt-5 lg:grid-cols-2">
+    <a th:each="node : ${sonNodes}" th:href="${node.status.permalink}"
+      class="card block cursor-pointer bg-base-100 shadow ring-1 ring-base-200 transition-all hover:shadow-md hover:ring-neutral">
+      <div class="card-body">
+        <h2 class="card-title" th:text="|${node.spec.type == 'TREE' ? '📁' : '📝'} ${node.spec.title}|"></h2>
+      </div>
+    </a>
+  </div>
+
+  <div class="divider !my-10"></div>
+
+  <th:block th:replace="~{plugin:plugin-docsme:modules/navigation}" />
+</th:block>
+
+</html>

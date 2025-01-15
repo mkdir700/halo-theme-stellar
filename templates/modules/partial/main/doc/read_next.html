@@ -1,0 +1,18 @@
+<th:block th:if="${linkNavigation}">
+    <div class="related-wrap" id="read-next" th:if="${linkNavigation.hasPrevious || linkNavigation.hasNext}">
+        <section class="body">
+            <div class="item" id="prev">
+                <th:block th:if="${linkNavigation.hasPrevious}">
+                    <div class="note">[[#{meta.prev}]]</div>
+                    <a th:href="${linkNavigation.previous.link}" th:text="${linkNavigation.previous.title}"></a>
+                </th:block>
+            </div>
+            <div class="item" id="next">
+                <th:block th:if="${linkNavigation.hasNext}">
+                    <div class="note">[[#{meta.next}]]</div>
+                    <a th:href="${linkNavigation.next.link}" th:text="${linkNavigation.next.title}"></a>
+                </th:block>
+            </div>
+        </section>
+    </div>
+</th:block>
